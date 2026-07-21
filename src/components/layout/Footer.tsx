@@ -1,8 +1,10 @@
 import { Link } from 'wouter';
-import { Twitter, Instagram, Youtube, Facebook, Mail } from 'lucide-react';
+import { Twitter, Instagram, Youtube, Facebook, Mail, Settings2 } from 'lucide-react';
+import { useConsent } from '../../context/ConsentContext';
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const { openPreferences } = useConsent();
 
   return (
     <footer className="bg-background border-t border-white/5 pt-16 pb-8 relative overflow-hidden" aria-label="Site footer">
@@ -118,10 +120,19 @@ export function Footer() {
           <p>
             &copy; {year} Smart Picks Daily. All rights reserved.
           </p>
-          <nav aria-label="Legal links" className="flex items-center gap-4">
+          <nav aria-label="Legal links" className="flex items-center gap-4 flex-wrap justify-center">
             <Link href="/privacy" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:underline">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:underline">Terms of Service</Link>
             <Link href="/disclaimer" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:underline">Affiliate Disclosure</Link>
+            <button
+              type="button"
+              onClick={openPreferences}
+              className="flex items-center gap-1.5 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/50 rounded"
+              aria-label="Manage cookie and privacy preferences"
+            >
+              <Settings2 size={12} aria-hidden="true" />
+              Privacy Preferences
+            </button>
           </nav>
         </div>
         <p className="mt-4 text-[10px] text-muted-foreground/50 text-center max-w-3xl mx-auto leading-relaxed">
