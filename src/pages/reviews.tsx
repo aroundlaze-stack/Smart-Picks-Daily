@@ -247,9 +247,9 @@ export default function Reviews() {
                 </tr>
                 <tr className="border-b border-white/5 hover:bg-white/[0.02]">
                   <td className="p-4 text-muted-foreground font-medium">Price</td>
-                  <td className="p-4 text-primary font-bold bg-primary/5">$1,299</td>
-                  <td className="p-4">$2,699</td>
-                  <td className="p-4">$899</td>
+                  <td className="p-4 text-primary font-bold bg-primary/5">₹1,05,000</td>
+                  <td className="p-4">₹2,25,000</td>
+                  <td className="p-4">₹75,000</td>
                 </tr>
                 <tr className="border-b border-white/5 hover:bg-white/[0.02]">
                   <td className="p-4 text-muted-foreground font-medium">GPU</td>

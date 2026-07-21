@@ -15,7 +15,7 @@ const ARTICLES = [
   { id: 2, type: "Comparison", time: "6 min", title: "Mechanical vs Optical Switches", excerpt: "Which keyboard switches reign supreme for competitive gaming vs typing?", date: "Jul 12, 2026" },
   { id: 3, type: "Reviews", time: "7 min", title: "Best Gaming Monitors for Every Budget", excerpt: "Refresh rates, HDR, response times explained and our top picks for each bracket.", date: "Jul 08, 2026" },
   { id: 4, type: "Comparison", time: "5 min", title: "Top Wireless Headphones 2026", excerpt: "We tested the top 10 models for sound quality, comfort, and battery life.", date: "Jul 03, 2026" },
-  { id: 5, type: "Buying Guide", time: "4 min", title: "Best Budget Gaming Mice", excerpt: "Precision on a budget. You don't need to spend $150 to get flawless tracking.", date: "Jun 28, 2026" },
+  { id: 5, type: "Buying Guide", time: "4 min", title: "Best Budget Gaming Mice", excerpt: "Precision on a budget. You don't need to overspend to get flawless tracking.", date: "Jun 28, 2026" },
   { id: 6, type: "Explainer", time: "9 min", title: "SSD vs HDD: The Complete Guide", excerpt: "Storage decisions made simple. When you still need spinning rust and when NVMe is mandatory.", date: "Jun 22, 2026" }
 ];
 
@@ -82,7 +82,7 @@ export default function Blog() {
           <div className="text-center px-4 max-w-3xl">
             <div className="inline-flex items-center gap-4 mb-6">
               <div className="flex flex-col items-center">
-                <span className="text-2xl font-bold text-primary">150+</span>
+                <span className="text-2xl font-bold text-primary">In-Depth</span>
                 <span className="text-xs text-muted-foreground uppercase tracking-wider">Articles</span>
               </div>
               <div className="w-px h-8 bg-white/20" />

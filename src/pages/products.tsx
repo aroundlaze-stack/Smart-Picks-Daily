@@ -639,7 +639,12 @@ export default function Products() {
               </AnimatePresence>
             </div>
           </div>
-          <div className="overflow-x-auto pb-1 hide-scrollbar flex items-center gap-2">
+          <div className="relative">
+            {/* Left fade: shows there's more to scroll */}
+            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 z-10 bg-gradient-to-r from-black/70 to-transparent rounded-l" aria-hidden="true" />
+            {/* Right fade: shows there's more to scroll */}
+            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 z-10 bg-gradient-to-l from-black/70 to-transparent rounded-r" aria-hidden="true" />
+          <div className="overflow-x-auto pb-1 hide-scrollbar flex items-center gap-2" role="listbox" aria-label="Filter by product category">
             {ALL_CATEGORIES.map(cat => (
               <button
                 key={cat}
@@ -653,6 +658,7 @@ export default function Products() {
                 {cat}
               </button>
             ))}
+</div>
           </div>
         </div>
       </section>

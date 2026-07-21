@@ -11,7 +11,7 @@ import {
 const BUILDS = [
   {
     title: "1080p Budget King",
-    price: "$800 - $1,000",
+    price: "₹65,000 – ₹85,000",
     desc: "Max out graphics at 1080p without breaking the bank. Perfect for esports and modern AAA titles on high settings.",
     specs: [
       { name: "CPU", val: "AMD Ryzen 5 7600" },
@@ -24,7 +24,7 @@ const BUILDS = [
   },
   {
     title: "1440p Sweet Spot",
-    price: "$1,300 - $1,600",
+    price: "₹1,05,000 – ₹1,35,000",
     desc: "The best price-to-performance ratio in gaming right now. Dominates 1440p monitors with high refresh rates.",
     specs: [
       { name: "CPU", val: "Intel Core i5-13600K" },
@@ -38,7 +38,7 @@ const BUILDS = [
   },
   {
     title: "4K No Compromises",
-    price: "$2,500+",
+    price: "₹2,00,000+",
     desc: "When budget isn't a concern. Play anything at 4K native or crush complex video editing and 3D rendering workflows.",
     specs: [
       { name: "CPU", val: "AMD Ryzen 7 7800X3D" },

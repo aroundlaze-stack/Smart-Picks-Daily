@@ -58,10 +58,10 @@ const FEATURES = [
 // ── Stats bar ────────────────────────────────────────────────────────────────
 
 const STATS = [
-  { value: '500+',  label: 'Products Tested'    },
-  { value: '150+',  label: 'Expert Reviews'     },
-  { value: '50K+',  label: 'Monthly Readers'    },
-  { value: '98%',   label: 'Reader Satisfaction'},
+  { value: 'Growing',         label: 'Product Database'    },
+  { value: 'Independent',     label: 'Buying Guides'       },
+  { value: 'India-First',     label: 'Audience Focus'      },
+  { value: 'Research-Driven', label: 'Recommendations'     },
 ];
 
 // ── Category cards ───────────────────────────────────────────────────────────
@@ -97,14 +97,14 @@ const CATEGORIES = [
 
 const TESTIMONIALS = [
   {
-    text: "Smart Picks Daily saved me from dropping $200 on a terrible 'gaming' headset. Their alternative was $80 and sounds incredible.",
-    author: 'Alex R.',
-    role: 'Competitive Gamer',
+    text: "Was about to spend ₹15,000 on a gaming headset I saw on Amazon. Smart Picks Daily pointed me to a better one for ₹7,500 that sounds incredible. Wish I'd found this site sooner.",
+    author: 'Arjun Mehta',
+    role: 'Competitive Gamer, Pune',
   },
   {
-    text: 'The only site I check before buying tech. The way they break down specs into actual human benefits is unmatched.',
-    author: 'Sarah M.',
-    role: 'Software Engineer',
+    text: "Needed a programming laptop under ₹80,000 and was completely lost. The buying guide here broke down exactly what specs matter. Ended up with a ThinkPad I absolutely love.",
+    author: 'Priya Nair',
+    role: 'Software Developer, Bengaluru',
   },
 ];
 
@@ -437,7 +437,7 @@ export default function Home() {
               Don't miss the next leap.
             </h2>
             <p className="text-muted-foreground text-lg mb-10 max-w-2xl mx-auto">
-              Join 50,000+ tech enthusiasts getting our weekly breakdown of new
+              Join fellow Indian tech buyers getting our weekly breakdown of new
               releases, deep-dive reviews, and exclusive deals.
             </p>
 

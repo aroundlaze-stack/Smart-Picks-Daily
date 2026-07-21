@@ -266,59 +266,98 @@
 
 /* ── Light mode overrides (applied via .light class on <html>) ── */
 .light {
-  --button-outline: rgba(0, 0, 0, 0.08);
-  --badge-outline: rgba(0, 0, 0, 0.05);
-  --opaque-button-border-intensity: 9;
-  --elevate-1: rgba(0, 0, 0, 0.03);
-  --elevate-2: rgba(0, 0, 0, 0.07);
+  --button-outline: rgba(0, 0, 0, 0.10);
+  --badge-outline: rgba(0, 0, 0, 0.07);
+  --opaque-button-border-intensity: 12;
+  --elevate-1: rgba(0, 0, 0, 0.04);
+  --elevate-2: rgba(0, 0, 0, 0.09);
 
-  /* Near-white with slight blue tint */
-  --background: 220 30% 97%;
-  --foreground: 229 63% 8%;
+  /* Premium soft-white background with very light blue tint */
+  --background: 218 40% 98%;
+  /* High-contrast near-black foreground for readability */
+  --foreground: 222 47% 11%;
 
-  --border: 220 20% 88%;
+  /* Subtle but visible borders */
+  --border: 218 25% 84%;
 
+  /* Cards: crisp white with soft shadow-ready base */
   --card: 0 0% 100%;
-  --card-foreground: 229 63% 8%;
-  --card-border: 220 20% 90%;
+  --card-foreground: 222 47% 11%;
+  --card-border: 218 25% 87%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 229 63% 8%;
-  --popover-border: 220 20% 88%;
+  --popover-foreground: 222 47% 11%;
+  --popover-border: 218 25% 84%;
 
-  /* Keep brand accent colours identical */
-  --primary: 219 100% 55%;
+  /* Electric blue primary — slightly deeper for light backgrounds (WCAG AA) */
+  --primary: 219 90% 48%;
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 262 83% 55%;
+  /* Purple secondary — deepened for contrast on white */
+  --secondary: 262 75% 48%;
   --secondary-foreground: 0 0% 100%;
 
-  --muted: 220 20% 92%;
-  --muted-foreground: 220 15% 40%;
+  /* Muted surfaces — light blue-grey, not plain grey */
+  --muted: 218 30% 93%;
+  /* Muted text — meets WCAG AA on white (4.5:1 ratio) */
+  --muted-foreground: 222 20% 32%;
 
-  --accent: 189 94% 38%;
+  /* Cyan accent — darkened for light mode contrast */
+  --accent: 189 80% 32%;
   --accent-foreground: 0 0% 100%;
 
-  --destructive: 0 84% 55%;
+  --destructive: 0 80% 48%;
   --destructive-foreground: 0 0% 100%;
 
-  --input: 220 20% 90%;
-  --ring: 219 100% 55%;
+  /* Inputs: slightly visible against background */
+  --input: 218 25% 88%;
+  --ring: 219 90% 48%;
 
-  --chart-1: 219 100% 55%;
-  --chart-2: 262 83% 55%;
-  --chart-3: 189 94% 38%;
-  --chart-4: 145 63% 42%;
-  --chart-5:  30 90% 50%;
+  --chart-1: 219 90% 48%;
+  --chart-2: 262 75% 48%;
+  --chart-3: 189 80% 32%;
+  --chart-4: 145 60% 36%;
+  --chart-5:  30 85% 44%;
 
-  --sidebar: 220 25% 95%;
-  --sidebar-foreground: 229 63% 8%;
-  --sidebar-border: 220 20% 88%;
-  --sidebar-primary: 219 100% 55%;
+  --sidebar: 218 35% 95%;
+  --sidebar-foreground: 222 47% 11%;
+  --sidebar-border: 218 25% 84%;
+  --sidebar-primary: 219 90% 48%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 220 20% 92%;
-  --sidebar-accent-foreground: 229 63% 8%;
-  --sidebar-ring: 219 100% 55%;
+  --sidebar-accent: 218 30% 90%;
+  --sidebar-accent-foreground: 222 47% 11%;
+  --sidebar-ring: 219 90% 48%;
+}
+
+/* ── Light mode: fix hardcoded dark-only styles ── */
+.light .bg-black\/40,
+.light .bg-black\/50,
+.light .bg-black\/60,
+.light .bg-black\/70 {
+  background-color: rgba(230, 238, 255, 0.85) !important;
+}
+
+/* Ensure links and interactive text have sufficient contrast in light mode */
+.light a:not([class*="text-"]) {
+  color: hsl(219, 90%, 40%);
+}
+
+/* Category pill border contrast in light mode */
+.light .border-white\/10 {
+  border-color: rgba(100, 130, 200, 0.25) !important;
+}
+
+/* Search bar legibility in light mode */
+.light input[type="search"],
+.light input[type="email"],
+.light input[type="text"] {
+  color: hsl(222, 47%, 11%);
+  background-color: hsl(218, 30%, 96%);
+}
+
+/* Footer link contrast in light mode */
+.light footer .text-muted-foreground {
+  color: hsl(222, 20%, 38%) !important;
 }
 
 /* Utility: hide scrollbar while keeping scroll functionality */
