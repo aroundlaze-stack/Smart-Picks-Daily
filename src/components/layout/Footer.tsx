@@ -1,6 +1,7 @@
 import { Link } from 'wouter';
 import { Twitter, Instagram, Youtube, Facebook, Mail, Settings2 } from 'lucide-react';
 import { useConsent } from '../../context/ConsentContext';
+import { trackFooterLinkClick } from '../../lib/tracking';
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -67,11 +68,11 @@ export function Footer() {
           <nav aria-label="Product categories">
             <h4 className="font-display font-bold mb-4">Categories</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/products?category=Keyboards" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">Mechanical Keyboards</Link></li>
-              <li><Link href="/products?category=Mice" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">Gaming Mice</Link></li>
-              <li><Link href="/products?category=Monitors" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">High-Refresh Monitors</Link></li>
-              <li><Link href="/products?category=Headsets" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">Wireless Audio</Link></li>
-              <li><Link href="/products?category=SSDs" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">Storage Solutions</Link></li>
+              <li><Link href="/products?category=Keyboards" onClick={() => trackFooterLinkClick('Mechanical Keyboards', '/products?category=Keyboards')} className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">Mechanical Keyboards</Link></li>
+              <li><Link href="/products?category=Mice" onClick={() => trackFooterLinkClick('Gaming Mice', '/products?category=Mice')} className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">Gaming Mice</Link></li>
+              <li><Link href="/products?category=Monitors" onClick={() => trackFooterLinkClick('High-Refresh Monitors', '/products?category=Monitors')} className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">High-Refresh Monitors</Link></li>
+              <li><Link href="/products?category=Headsets" onClick={() => trackFooterLinkClick('Wireless Audio', '/products?category=Headsets')} className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">Wireless Audio</Link></li>
+              <li><Link href="/products?category=SSDs" onClick={() => trackFooterLinkClick('Storage Solutions', '/products?category=SSDs')} className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">Storage Solutions</Link></li>
             </ul>
           </nav>
 
@@ -79,11 +80,11 @@ export function Footer() {
           <nav aria-label="Company links">
             <h4 className="font-display font-bold mb-4">Company</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/about" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">About Us</Link></li>
-              <li><Link href="/reviews" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">Editorial Process</Link></li>
-              <li><Link href="/resources" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">Buying Guides</Link></li>
-              <li><Link href="/contact" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">Contact</Link></li>
-              <li><Link href="/computers" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">PC Builds</Link></li>
+              <li><Link href="/about" onClick={() => trackFooterLinkClick('About Us', '/about')} className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">About Us</Link></li>
+              <li><Link href="/reviews" onClick={() => trackFooterLinkClick('Editorial Process', '/reviews')} className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">Editorial Process</Link></li>
+              <li><Link href="/resources" onClick={() => trackFooterLinkClick('Buying Guides', '/resources')} className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">Buying Guides</Link></li>
+              <li><Link href="/contact" onClick={() => trackFooterLinkClick('Contact', '/contact')} className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">Contact</Link></li>
+              <li><Link href="/computers" onClick={() => trackFooterLinkClick('PC Builds', '/computers')} className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">PC Builds</Link></li>
             </ul>
           </nav>
 
@@ -121,9 +122,9 @@ export function Footer() {
             &copy; {year} Smart Picks Daily. All rights reserved.
           </p>
           <nav aria-label="Legal links" className="flex items-center gap-4 flex-wrap justify-center">
-            <Link href="/privacy" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:underline">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:underline">Terms of Service</Link>
-            <Link href="/disclaimer" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:underline">Affiliate Disclosure</Link>
+            <Link href="/privacy" onClick={() => trackFooterLinkClick('Privacy Policy', '/privacy')} className="hover:text-white transition-colors focus-visible:outline-none focus-visible:underline">Privacy Policy</Link>
+            <Link href="/terms" onClick={() => trackFooterLinkClick('Terms of Service', '/terms')} className="hover:text-white transition-colors focus-visible:outline-none focus-visible:underline">Terms of Service</Link>
+            <Link href="/disclaimer" onClick={() => trackFooterLinkClick('Affiliate Disclosure', '/disclaimer')} className="hover:text-white transition-colors focus-visible:outline-none focus-visible:underline">Affiliate Disclosure</Link>
             <button
               type="button"
               onClick={openPreferences}

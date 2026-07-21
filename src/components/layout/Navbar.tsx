@@ -3,6 +3,7 @@ import { Link, useLocation } from 'wouter';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CockpitSwitch } from '../ui/CockpitSwitch';
+import { trackNavigationClick } from '../../lib/tracking';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -63,6 +64,7 @@ export function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
+                  onClick={() => trackNavigationClick(link.label, link.href)}
                   className={`text-sm font-medium transition-colors hover:text-primary relative py-1 ${
                     isActive ? 'text-primary' : 'text-muted-foreground'
                   }`}
@@ -128,6 +130,7 @@ export function Navbar() {
                   >
                     <Link
                       href={link.href}
+                      onClick={() => trackNavigationClick(link.label, link.href)}
                       className={`flex items-center justify-between text-2xl font-display font-bold py-4 border-b border-white/5 ${
                         isActive ? 'text-primary' : 'text-foreground'
                       }`}

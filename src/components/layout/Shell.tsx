@@ -1,11 +1,25 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { CustomCursor } from '../ui/custom-cursor';
+import {
+  attachScrollDepthTracker,
+  attachTimeOnPageTracker,
+  attachExternalLinkTracker,
+} from '../../lib/tracking';
+
 export function Shell({ children }: { children: ReactNode }) {
   const [location] = useLocation();
+
+  // Attach per-page engagement trackers
+  useEffect(() => {
+    const cleanupScroll = attachScrollDepthTracker(location);
+    const cleanupTime   = attachTimeOnPageTracker(location);
+    const cleanupLinks  = attachExternalLinkTracker();
+    return () => { cleanupScroll(); cleanupTime(); cleanupLinks(); };
+  }, [location]);
 
   return (
     <div className="min-h-[100dvh] flex flex-col bg-background text-foreground overflow-x-hidden relative selection:bg-primary/30">
