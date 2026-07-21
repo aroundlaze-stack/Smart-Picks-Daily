@@ -28,13 +28,13 @@ export function ChatWidget() {
       if (lowerInput.includes('keyboard')) {
         response = "For keyboards, it depends if you want mechanical for gaming or something quieter for productivity. Here are my top picks:";
         products = [
-          { name: "Logitech MX Keys S", price: "$100-$160", pros: "Quiet, great battery", cons: "Not for serious gaming" },
-          { name: "Keychron K8 Pro", price: "$80-$130", pros: "Customizable, mechanical", cons: "A bit bulky" }
+          { name: "Logitech MX Keys S", price: "₹8,500 – ₹13,500", pros: "Quiet, great battery", cons: "Not for serious gaming" },
+          { name: "Keychron K8 Pro", price: "₹6,500 – ₹11,000", pros: "Customizable, mechanical", cons: "A bit bulky" }
         ];
       } else if (lowerInput.includes('mouse') || lowerInput.includes('mice')) {
         response = "A good mouse changes everything. These are the best right now:";
         products = [
-          { name: "Logitech G Pro X Superlight 2", price: "$140-$180", pros: "Ultra-light, flawless sensor", cons: "Expensive" }
+          { name: "Logitech G Pro X Superlight 2", price: "₹12,000 – ₹15,500", pros: "Ultra-light, flawless sensor", cons: "Expensive" }
         ];
       } else if (lowerInput.includes('budget') || lowerInput.includes('cheap')) {
         response = "Budget doesn't have to mean bad quality. I'd recommend checking out options that prioritize value over flashy features.";
