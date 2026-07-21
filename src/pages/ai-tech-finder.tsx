@@ -3,6 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation } from 'wouter';
 import { SEO } from '../components/seo';
 import {
+  trackAiFinderOpened,
+  trackDeviceTypeSelected,
+  trackAiSubcategorySelected,
+  trackBudgetSelected,
+  trackPurposeSelected,
+  trackRecommendationGenerated,
+  trackRecommendationIgnored,
+  trackRecommendationAccepted,
+} from '../lib/tracking';
+import {
   Sparkles, ChevronRight, ChevronLeft, CheckCircle2,
   Monitor, Cpu, Wifi, Smartphone, ShoppingBag,
   ArrowRight, Zap, RotateCcw, Keyboard
@@ -616,6 +626,9 @@ export default function AiTechFinder() {
   const handleAnswer = (qId: string, value: string) => {
     const newAnswers = { ...answers, [qId]: value };
     setAnswers(newAnswers);
+    // Track specific answer types
+    if (qId === 'budget') trackBudgetSelected(value, selectedSub?.category ?? 'unknown');
+    if (qId === 'purpose') trackPurposeSelected(value, selectedSub?.category ?? 'unknown');
     if (currentQ < totalQ - 1) {
       setTimeout(() => setCurrentQ(q => q + 1), 250);
     }
@@ -630,13 +643,18 @@ export default function AiTechFinder() {
     if (answers.budget) params.set('budget', answers.budget);
     if (answers.brand) params.set('brand', answers.brand);
     params.set('scroll', 'products');
-    setTimeout(() => setLocation(`/products?${params.toString()}`), 2200);
+    trackRecommendationGenerated(selectedSub?.category ?? 'unknown', answers);
+    setTimeout(() => {
+      trackRecommendationAccepted(selectedSub?.category ?? 'unknown');
+      setLocation(`/products?${params.toString()}`);
+    }, 2200);
   };
 
   const handleGroupClick = (g: MainCategory) => {
     setExpandedGroup(expandedGroup === g.id ? null : g.id);
     setSelectedGroup(g);
     setSelectedSub(null);
+    trackDeviceTypeSelected(g.label ?? g.id);
   };
 
   const handleSubClick = (sub: SubCategory) => {
@@ -644,6 +662,7 @@ export default function AiTechFinder() {
     setAnswers({});
     setCurrentQ(0);
     setStage('questions');
+    trackAiSubcategorySelected(sub.category, selectedGroup?.label ?? selectedGroup?.id ?? 'unknown');
   };
 
   const restart = () => {
@@ -653,6 +672,7 @@ export default function AiTechFinder() {
     setExpandedGroup(null);
     setAnswers({});
     setCurrentQ(0);
+    trackRecommendationIgnored();
   };
 
   const isComplete = currentQ === totalQ - 1 && answers[currentQuestion?.id];
@@ -769,7 +789,7 @@ export default function AiTechFinder() {
                   transition={{ delay: 0.55 }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
-                  onClick={() => setStage('category')}
+                  onClick={() => { setStage('category'); trackAiFinderOpened(); }}
                   className="group inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground px-10 py-5 rounded-full font-bold text-lg transition-all shadow-[0_0_30px_rgba(79,140,255,0.45)] hover:shadow-[0_0_50px_rgba(79,140,255,0.65)]"
                 >
                   Start Finding Your Perfect Tech

@@ -1,4 +1,13 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
+import {
+  trackProductCardClicked,
+  trackAffiliateClick,
+  trackCategoryFilter,
+  trackSortOptionSelected,
+  trackLoadMoreProducts,
+  trackSearchCompleted,
+  trackNoResults,
+} from '../lib/tracking';
 import { SEO } from '../components/seo';
 import { HolographicShelf } from '../components/3d/HolographicShelf';
 import { Search, Filter, ExternalLink, SlidersHorizontal, ChevronDown, X, Sparkles, Cpu, Brain } from 'lucide-react';
@@ -464,11 +473,27 @@ export default function Products() {
     setActiveIndex(null);
   }, [search, category, sortBy]);
 
+  // Debounced search tracking
+  useEffect(() => {
+    if (!search) return;
+    const t = setTimeout(() => {
+      if (filtered.length === 0) {
+        trackNoResults(search, category);
+      } else {
+        trackSearchCompleted(search, filtered.length, category);
+      }
+    }, 800);
+    return () => clearTimeout(t);
+  }, [search, filtered.length, category]);
+
   const visibleProducts = filtered.slice(0, visibleCount);
   const hasMore = visibleCount < filtered.length;
   const shelfProducts = filtered.slice(0, 7);
 
-  const loadMore = useCallback(() => setVisibleCount(prev => prev + PAGE_SIZE), []);
+  const loadMore = useCallback(() => {
+    setVisibleCount(prev => prev + PAGE_SIZE);
+    trackLoadMoreProducts(category, filtered.length - visibleCount);
+  }, [category, filtered.length, visibleCount]);
 
   const clearFilters = () => {
     setSearch(""); setCategory("All"); setSortBy("default");
@@ -603,7 +628,7 @@ export default function Products() {
                     {SORT_OPTIONS.map(o => (
                       <button
                         key={o.value}
-                        onClick={() => { setSortBy(o.value); setShowSortDropdown(false); }}
+                        onClick={() => { setSortBy(o.value); setShowSortDropdown(false); trackSortOptionSelected(o.value); }}
                         className={`w-full text-left px-4 py-2.5 text-sm transition-colors hover:bg-white/5 ${sortBy === o.value ? 'text-primary font-medium' : 'text-foreground/80'}`}
                       >
                         {o.label}
@@ -618,7 +643,7 @@ export default function Products() {
             {ALL_CATEGORIES.map(cat => (
               <button
                 key={cat}
-                onClick={() => setCategory(cat)}
+                onClick={() => { setCategory(cat); trackCategoryFilter(cat); }}
                 className={`px-3.5 py-1.5 rounded-lg whitespace-nowrap text-xs font-semibold transition-all duration-200 flex-shrink-0 ${
                   category === cat
                     ? 'bg-primary text-primary-foreground shadow-[0_0_12px_rgba(79,140,255,0.5)]'
@@ -721,7 +746,8 @@ export default function Products() {
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.88 }}
                   transition={{ duration: 0.25, delay: Math.min(i * 0.04, 0.4) }}
-                  className="group bg-card border border-white/5 rounded-2xl overflow-hidden hover:border-primary/40 transition-all duration-300 flex flex-col hover:shadow-[0_0_24px_rgba(79,140,255,0.12)]"
+                  onClick={() => trackProductCardClicked({ name: product.name, category: product.category, price: product.price, priceMin: product.priceMin })}
+                  className="group bg-card border border-white/5 rounded-2xl overflow-hidden hover:border-primary/40 transition-all duration-300 flex flex-col hover:shadow-[0_0_24px_rgba(79,140,255,0.12)] cursor-pointer"
                 >
                   {/* Image area */}
                   <div className="h-44 bg-black/50 relative overflow-hidden flex items-center justify-center p-5">
@@ -796,6 +822,7 @@ export default function Products() {
                       href={product.link}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackAffiliateClick({ name: product.name, category: product.category, price: product.price, priceMin: product.priceMin })}
                       className="w-full py-2.5 rounded-xl bg-white/5 hover:bg-primary text-foreground hover:text-primary-foreground border border-white/10 hover:border-primary font-bold text-sm flex items-center justify-center gap-2 transition-all mt-auto group-hover:shadow-[0_0_12px_rgba(79,140,255,0.3)]"
                     >
                       View Deal <ExternalLink size={14} />

@@ -3,6 +3,11 @@ import { SEO } from '../components/seo';
 import { ScanningLab } from '../components/3d/ScanningLab';
 import { Star, Check, X, ArrowRight, Award } from 'lucide-react';
 import { motion } from 'framer-motion';
+import {
+  trackReviewViewed,
+  trackReadFullReview,
+  trackComparisonViewDeal,
+} from '../lib/tracking';
 
 const REVIEWS = [
   { category: "Monitor", score: 4.7, title: "Best Gaming Monitors of 2026", date: "July 2026", read: "8 min" },
@@ -133,7 +138,11 @@ export default function Reviews() {
                 </div>
               </div>
               
-              <button className="bg-primary hover:bg-primary/90 text-primary-foreground py-4 rounded-xl font-bold w-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-label="Read the full featured review">
+              <button
+                className="bg-primary hover:bg-primary/90 text-primary-foreground py-4 rounded-xl font-bold w-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                aria-label="Read the full featured review"
+                onClick={() => trackReadFullReview('MSI Katana 17')}
+              >
                 Read Full Review
               </button>
             </div>
@@ -185,6 +194,7 @@ export default function Reviews() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
+                onClick={() => trackReviewViewed(review.title, review.category)}
                 className="group block bg-card border border-white/5 rounded-2xl p-6 hover:bg-white/5 hover:border-primary/30 transition-all relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -mr-16 -mt-16 transition-transform group-hover:scale-150" />
@@ -261,9 +271,9 @@ export default function Reviews() {
                 </tr>
                 <tr>
                   <td className="p-4"></td>
-                  <td className="p-4 bg-primary/5 rounded-b-xl"><button className="w-full bg-primary text-primary-foreground py-2 rounded-lg font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-label="View deal for Editor's Choice laptop (MSI Katana 17)">View Deal</button></td>
-                  <td className="p-4"><button className="w-full bg-white/10 hover:bg-white/20 py-2 rounded-lg font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-label="View deal for Premium Pick laptop (Razer Blade 16)">View Deal</button></td>
-                  <td className="p-4"><button className="w-full bg-white/10 hover:bg-white/20 py-2 rounded-lg font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-label="View deal for Budget Pick laptop (Acer Nitro 5)">View Deal</button></td>
+                  <td className="p-4 bg-primary/5 rounded-b-xl"><button className="w-full bg-primary text-primary-foreground py-2 rounded-lg font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-label="View deal for Editor's Choice laptop (MSI Katana 17)" onClick={() => trackComparisonViewDeal('MSI Katana 17', "Editor's Choice")}>View Deal</button></td>
+                  <td className="p-4"><button className="w-full bg-white/10 hover:bg-white/20 py-2 rounded-lg font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-label="View deal for Premium Pick laptop (Razer Blade 16)" onClick={() => trackComparisonViewDeal('Razer Blade 16', 'Premium Pick')}>View Deal</button></td>
+                  <td className="p-4"><button className="w-full bg-white/10 hover:bg-white/20 py-2 rounded-lg font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-label="View deal for Budget Pick laptop (Acer Nitro 5)" onClick={() => trackComparisonViewDeal('Acer Nitro 5', 'Budget Pick')}>View Deal</button></td>
                 </tr>
               </tbody>
             </table>

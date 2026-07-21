@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { SEO } from '../components/seo';
 import { NebulaCloud } from '../components/3d/NebulaCloud';
+import { trackResourceClick, trackResourceCategoryFilter } from '../lib/tracking';
 import {
   Code2, Video, Palette, Cloud, Shield, Gauge, Cpu, Wifi,
   Laptop, Wrench, ExternalLink, Search, X, Terminal, MonitorCheck
@@ -228,6 +229,7 @@ function ResourceCard({ res, index }: { res: Resource; index: number }) {
         href={res.url}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackResourceClick(res.title, res.category, res.url)}
         className={`inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border font-semibold text-sm transition-all duration-200 ${cfg.border} ${cfg.color} hover:bg-white/10 hover:border-white/25`}
       >
         Visit Official Website <ExternalLink size={13} />
@@ -352,7 +354,7 @@ export default function Resources() {
           {/* Category chips */}
           <div className="flex gap-2 overflow-x-auto pb-1 hide-scrollbar">
             <button
-              onClick={() => setActiveCategory("All")}
+              onClick={() => { setActiveCategory("All"); trackResourceCategoryFilter("All"); }}
               className={`flex-shrink-0 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 activeCategory === "All"
                   ? "bg-primary text-primary-foreground"
@@ -366,7 +368,7 @@ export default function Resources() {
               return (
                 <button
                   key={cat}
-                  onClick={() => setActiveCategory(cat)}
+                  onClick={() => { setActiveCategory(cat); trackResourceCategoryFilter(cat); }}
                   className={`flex-shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                     activeCategory === cat
                       ? `${cfg.bg} ${cfg.border} border ${cfg.color}`

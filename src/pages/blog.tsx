@@ -4,6 +4,11 @@ import { ConstellationMap } from '../components/3d/ConstellationMap';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { Link } from 'wouter';
 import { motion } from 'framer-motion';
+import {
+  trackArticleOpened,
+  trackBlogFilterSelected,
+  trackLoadMoreArticles,
+} from '../lib/tracking';
 
 const ARTICLES = [
   { id: 1, type: "Buying Guide", time: "8 min", title: "Best Gaming Laptops of 2026", excerpt: "Compare the latest high-performance machines with RTX graphics and OLED displays.", date: "Jul 15, 2026" },
@@ -117,7 +122,11 @@ export default function Blog() {
             <h2 className="text-3xl font-display font-bold">Latest Transmissions</h2>
             <div className="hidden md:flex gap-2">
               {['All', 'Guides', 'Reviews', 'Comparisons'].map(filter => (
-                <button key={filter} className={`px-4 py-1.5 rounded-full text-sm font-medium ${filter === 'All' ? 'bg-primary text-primary-foreground' : 'bg-white/5 text-muted-foreground hover:bg-white/10'}`}>
+                <button
+                  key={filter}
+                  onClick={() => trackBlogFilterSelected(filter)}
+                  className={`px-4 py-1.5 rounded-full text-sm font-medium ${filter === 'All' ? 'bg-primary text-primary-foreground' : 'bg-white/5 text-muted-foreground hover:bg-white/10'}`}
+                >
                   {filter}
                 </button>
               ))}
@@ -135,7 +144,7 @@ export default function Blog() {
                 className="group relative flex flex-col"
               >
                 {/* Image Placeholder */}
-                <Link href={`/blog/${article.id}`} className="block relative h-56 rounded-2xl overflow-hidden mb-6 bg-card border border-white/10 group-hover:border-primary/50 transition-colors">
+                <Link href={`/blog/${article.id}`} onClick={() => trackArticleOpened(article.id, article.title, article.type)} className="block relative h-56 rounded-2xl overflow-hidden mb-6 bg-card border border-white/10 group-hover:border-primary/50 transition-colors">
                   <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/20 via-background to-background opacity-50 group-hover:opacity-100 transition-opacity" />
                   <div className="absolute inset-0 flex items-center justify-center p-6 text-center">
                     <span className="font-display font-bold text-xl text-white/50 group-hover:text-white transition-colors drop-shadow-md">
@@ -174,6 +183,7 @@ export default function Blog() {
             <button
               className="bg-white/5 hover:bg-white/10 border border-white/10 px-8 py-3 rounded-full font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               aria-label="Load more articles"
+              onClick={trackLoadMoreArticles}
             >
               Load More Articles
             </button>

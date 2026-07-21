@@ -2,6 +2,11 @@ import { useState, useEffect } from 'react';
 import { SEO } from '../components/seo';
 import { ExplodedComputer } from '../components/3d/ExplodedComputer';
 import { Cpu, Zap, HardDrive, Monitor } from 'lucide-react';
+import {
+  trackComputerCategorySelected,
+  trackBuildPartsListClicked,
+  trackViewBuildGuidesClicked,
+} from '../lib/tracking';
 
 const BUILDS = [
   {
@@ -97,7 +102,7 @@ export default function Computers() {
             <div className="flex gap-4 pointer-events-auto">
               <button
                 className="bg-primary text-primary-foreground px-6 py-3 rounded-xl font-bold hover:bg-primary/90 transition-colors shadow-[0_0_20px_rgba(79,140,255,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                onClick={() => document.getElementById('builds-section')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => { document.getElementById('builds-section')?.scrollIntoView({ behavior: 'smooth' }); trackViewBuildGuidesClicked(); }}
               >
                 View Build Guides
               </button>
@@ -147,6 +152,7 @@ export default function Computers() {
                   <button
                     className="w-full bg-white/5 hover:bg-white/10 border border-white/10 py-4 rounded-xl font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                     aria-label={`View parts list for ${build.title}`}
+                    onClick={() => trackBuildPartsListClicked(build.title)}
                   >
                     View Parts List
                   </button>
@@ -170,6 +176,7 @@ export default function Computers() {
               <a
                 href={cat.href}
                 key={i}
+                onClick={() => trackComputerCategorySelected(cat.label)}
                 className="flex flex-col items-center justify-center p-6 bg-card border border-white/5 rounded-2xl hover:bg-white/5 hover:border-primary/30 transition-colors gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 <div className="text-muted-foreground">{cat.icon}</div>
