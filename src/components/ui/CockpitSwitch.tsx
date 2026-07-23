@@ -1,12 +1,21 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-/** Applies the theme class to <html> and persists to localStorage. */
+const TRANSITION_MS = 380;
+
+/** Applies the theme class to <html>, persists to localStorage, and adds a
+ *  short "theme-transitioning" class so CSS can animate the colour change. */
 function applyTheme(isDark: boolean) {
+  const html = document.documentElement;
+
+  // Kick off smooth transition
+  html.classList.add('theme-transitioning');
+  setTimeout(() => html.classList.remove('theme-transitioning'), TRANSITION_MS);
+
   if (isDark) {
-    document.documentElement.classList.remove('light');
+    html.classList.remove('light');
   } else {
-    document.documentElement.classList.add('light');
+    html.classList.add('light');
   }
 }
 
@@ -22,7 +31,12 @@ export function CockpitSwitch() {
     const saved = localStorage.getItem('spd-theme');
     const dark = saved ? saved === 'dark' : true;
     setIsDark(dark);
-    applyTheme(dark);
+    // Apply without transition on initial load (no flash)
+    if (dark) {
+      document.documentElement.classList.remove('light');
+    } else {
+      document.documentElement.classList.add('light');
+    }
   }, []);
 
   const toggle = () => {

@@ -1,6 +1,7 @@
 import { Link } from 'wouter';
 import { Twitter, Instagram, Youtube, Facebook, Mail, Settings2 } from 'lucide-react';
 import { useConsent } from '../../context/ConsentContext';
+import { Logo } from './Logo';
 import { trackFooterLinkClick } from '../../lib/tracking';
 
 export function Footer() {
@@ -17,14 +18,7 @@ export function Footer() {
 
           {/* Brand */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2 w-max" aria-label="Smart Picks Daily — home">
-              <div className="w-8 h-8 rounded bg-primary flex items-center justify-center font-display font-bold text-background" aria-hidden="true">
-                SP
-              </div>
-              <span className="font-display font-bold text-lg tracking-tight">
-                Smart Picks <span className="text-primary">Daily</span>
-              </span>
-            </Link>
+            <Logo />
             <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
               The cockpit of the internet's most obsessive tech buyers. We put every gadget through its paces so you don't have to guess.
             </p>
@@ -82,7 +76,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li><Link href="/about" onClick={() => trackFooterLinkClick('About Us', '/about')} className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">About Us</Link></li>
               <li><Link href="/reviews" onClick={() => trackFooterLinkClick('Editorial Process', '/reviews')} className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">Editorial Process</Link></li>
-              <li><Link href="/resources" onClick={() => trackFooterLinkClick('Buying Guides', '/resources')} className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">Buying Guides</Link></li>
+              <li><Link href="/resources" onClick={() => trackFooterLinkClick('Tech Toolkit', '/resources')} className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">Tech Toolkit</Link></li>
               <li><Link href="/contact" onClick={() => trackFooterLinkClick('Contact', '/contact')} className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">Contact</Link></li>
               <li><Link href="/computers" onClick={() => trackFooterLinkClick('PC Builds', '/computers')} className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:underline">PC Builds</Link></li>
             </ul>

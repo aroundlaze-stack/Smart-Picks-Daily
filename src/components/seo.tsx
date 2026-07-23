@@ -82,14 +82,17 @@ export function SEO({
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={fullTitle} />
 
       {/* Twitter / X */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@SmartPicksDaily" />
+      <meta name="twitter:creator" content="@SmartPicksDaily" />
       <meta name="twitter:url" content={canonicalUrl} />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image:alt" content={fullTitle} />
 
       {/* Canonical */}
       <link rel="canonical" href={canonicalUrl} />
