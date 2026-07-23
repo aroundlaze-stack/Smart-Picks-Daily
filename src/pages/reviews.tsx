@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'wouter';
 import { SEO } from '../components/seo';
 import { ScanningLab } from '../components/3d/ScanningLab';
 import { Star, Check, X, ArrowRight, Award } from 'lucide-react';
@@ -8,15 +9,7 @@ import {
   trackReadFullReview,
   trackComparisonViewDeal,
 } from '../lib/tracking';
-
-const REVIEWS = [
-  { category: "Monitor", score: 4.7, title: "Best Gaming Monitors of 2026", date: "July 2026", read: "8 min" },
-  { category: "Audio", score: 4.5, title: "Best Wireless Headphones", date: "July 2026", read: "7 min" },
-  { category: "Accessories", score: 4.6, title: "Best Wireless Mouse", date: "July 2026", read: "6 min" },
-  { category: "Keyboard", score: 4.8, title: "Best Mechanical Keyboards", date: "July 2026", read: "5 min" },
-  { category: "Storage", score: 4.4, title: "Best External SSDs", date: "July 2026", read: "6 min" },
-  { category: "Laptop", score: 4.9, title: "Best Gaming Laptops", date: "July 2026", read: "10 min" }
-];
+import { REVIEWS } from './reviews/data';
 
 export default function Reviews() {
   const [isMobile, setIsMobile] = useState(false);
@@ -52,8 +45,8 @@ export default function Reviews() {
           {
             '@context': 'https://schema.org',
             '@type': 'Review',
-            name: 'MSI Katana 17 Review — Editor\'s Choice',
-            reviewBody: 'The mid-range king returns with an RTX 4070 that punches above its weight class. Consistently hits 100+ FPS at 1440p. Keyboard has excellent travel. Surprisingly quiet under full load. Battery life is abysmal under 3 hours.',
+            name: "MSI Katana 17 Review — Editor's Choice",
+            reviewBody: "The mid-range king returns with an RTX 4070 that punches above its weight class. Consistently hits 100+ FPS at 1440p. Keyboard has excellent travel. Surprisingly quiet under full load. Battery life is abysmal under 3 hours.",
             datePublished: '2026-07-01',
             reviewRating: { '@type': 'Rating', ratingValue: 4.8, bestRating: 5 },
             author: { '@type': 'Organization', name: 'Smart Picks Daily' },
@@ -64,7 +57,7 @@ export default function Reviews() {
               brand: { '@type': 'Brand', name: 'MSI' }
             }
           },
-          ...REVIEWS.map(r => ({
+          ...REVIEWS.filter(r => !r.featured).map(r => ({
             '@context': 'https://schema.org',
             '@type': 'Review',
             name: r.title,
@@ -138,13 +131,14 @@ export default function Reviews() {
                 </div>
               </div>
               
-              <button
-                className="bg-primary hover:bg-primary/90 text-primary-foreground py-4 rounded-xl font-bold w-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                aria-label="Read the full featured review"
+              <Link
+                href="/reviews/msi-katana-17-review"
+                className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground py-4 rounded-xl font-bold w-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                aria-label="Read the full MSI Katana 17 featured review"
                 onClick={() => trackReadFullReview('MSI Katana 17')}
               >
-                Read Full Review
-              </button>
+                Read Full Review <ArrowRight size={18} />
+              </Link>
             </div>
             
             <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
@@ -182,42 +176,55 @@ export default function Reviews() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex justify-between items-end mb-12">
             <h2 className="text-3xl font-display font-bold">Category Roundups</h2>
-            <a href="#" className="text-primary hover:underline font-medium hidden md:inline-block">View All Categories</a>
+            <span className="text-primary font-medium hidden md:inline-block">{REVIEWS.filter(r => !r.featured).length} Reviews</span>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {REVIEWS.map((review, i) => (
-              <motion.a 
-                href="#"
-                key={i}
+            {REVIEWS.filter(r => !r.featured).map((review, i) => (
+              <motion.div
+                key={review.slug}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                onClick={() => trackReviewViewed(review.title, review.category)}
-                className="group block bg-card border border-white/5 rounded-2xl p-6 hover:bg-white/5 hover:border-primary/30 transition-all relative overflow-hidden"
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -mr-16 -mt-16 transition-transform group-hover:scale-150" />
-                
-                <div className="flex justify-between items-start mb-6 relative z-10">
-                  <span className="text-xs font-bold px-2 py-1 rounded bg-white/10 text-muted-foreground group-hover:bg-primary/20 group-hover:text-primary transition-colors">
-                    {review.category}
-                  </span>
-                  <div className="flex items-center gap-1 bg-black/50 px-2 py-1 rounded-md border border-white/10">
-                    <Star size={14} className="text-primary fill-primary" />
-                    <span className="text-sm font-bold">{review.score}/5</span>
+                <Link
+                  href={`/reviews/${review.slug}`}
+                  onClick={() => trackReviewViewed(review.title, review.category)}
+                  className="group block bg-card border border-white/5 rounded-2xl p-6 hover:bg-white/5 hover:border-primary/30 transition-all relative overflow-hidden h-full"
+                >
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -mr-16 -mt-16 transition-transform group-hover:scale-150" />
+                  
+                  <div className="flex justify-between items-start mb-6 relative z-10">
+                    <div className="flex items-center gap-2">
+                      <span className="text-2xl">{review.icon}</span>
+                      <span className="text-xs font-bold px-2 py-1 rounded bg-white/10 text-muted-foreground group-hover:bg-primary/20 group-hover:text-primary transition-colors">
+                        {review.category}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1 bg-black/50 px-2 py-1 rounded-md border border-white/10">
+                      <Star size={14} className="text-primary fill-primary" />
+                      <span className="text-sm font-bold">{review.score}/5</span>
+                    </div>
                   </div>
-                </div>
-                
-                <h3 className="text-xl font-bold mb-4 group-hover:text-primary transition-colors relative z-10">
-                  {review.title}
-                </h3>
-                
-                <div className="flex justify-between items-center text-xs text-muted-foreground mt-auto pt-4 border-t border-white/5 relative z-10">
-                  <span>Updated {review.date}</span>
-                  <span className="flex items-center gap-1">{review.read} <ArrowRight size={12} className="opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all" /></span>
-                </div>
-              </motion.a>
+                  
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors relative z-10">
+                    {review.title}
+                  </h3>
+
+                  <p className="text-sm text-muted-foreground line-clamp-2 mb-4 relative z-10">
+                    {review.excerpt}
+                  </p>
+                  
+                  <div className="flex justify-between items-center text-xs text-muted-foreground mt-auto pt-4 border-t border-white/5 relative z-10">
+                    <span>Updated {review.date}</span>
+                    <span className="flex items-center gap-1 font-medium text-primary">
+                      {review.read} read
+                      <ArrowRight size={12} className="opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                    </span>
+                  </div>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>

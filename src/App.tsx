@@ -8,21 +8,38 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Shell } from './components/layout/Shell';
 import { CookieBanner } from './components/cookie-consent/CookieBanner';
 import { ConsentProvider, useConsent } from './context/ConsentContext';
+import { AuthProvider } from './auth/AuthProvider';
+import { ProtectedRoute } from './auth/ProtectedRoute';
 import { applyAnalyticsConsent } from './lib/analytics';
 
 // Lazy-loaded pages for optimal code splitting
-const Home         = lazy(() => import('./pages/home'));
-const Products     = lazy(() => import('./pages/products'));
-const Blog         = lazy(() => import('./pages/blog'));
-const Reviews      = lazy(() => import('./pages/reviews'));
-const Resources    = lazy(() => import('./pages/resources'));
-const Computers    = lazy(() => import('./pages/computers'));
-const About        = lazy(() => import('./pages/about'));
-const Contact      = lazy(() => import('./pages/contact'));
-const Legal        = lazy(() => import('./pages/legal'));
-const AiTechFinder = lazy(() => import('./pages/ai-tech-finder'));
-const LaptopFinder = lazy(() => import('./pages/laptop-finder'));
-const NotFound     = lazy(() => import('./pages/not-found'));
+const Home              = lazy(() => import('./pages/home'));
+const Products          = lazy(() => import('./pages/products'));
+const Blog              = lazy(() => import('./pages/blog'));
+const BlogArticle       = lazy(() => import('./pages/blog/article-page'));
+const Reviews           = lazy(() => import('./pages/reviews'));
+const ReviewArticle     = lazy(() => import('./pages/reviews/review-page'));
+const Resources         = lazy(() => import('./pages/resources'));
+const Computers         = lazy(() => import('./pages/computers'));
+const About             = lazy(() => import('./pages/about'));
+const Contact           = lazy(() => import('./pages/contact'));
+const Legal             = lazy(() => import('./pages/legal'));
+const AiTechFinder      = lazy(() => import('./pages/ai-tech-finder'));
+const LaptopFinder      = lazy(() => import('./pages/laptop-finder'));
+const Compare           = lazy(() => import('./pages/compare'));
+const NotFound          = lazy(() => import('./pages/not-found'));
+
+// Auth pages
+const LoginPage         = lazy(() => import('./pages/auth/login'));
+const SignUpPage        = lazy(() => import('./pages/auth/signup'));
+const ForgotPasswordPage = lazy(() => import('./pages/auth/forgot-password'));
+
+// Tech Toolkit — dedicated tool pages
+const CGPACalculatorPage     = lazy(() => import('./pages/resources/tools/pages/CGPACalculatorPage'));
+const EMICalculatorPage      = lazy(() => import('./pages/resources/tools/pages/EMICalculatorPage'));
+const StudyPlannerPage       = lazy(() => import('./pages/resources/tools/pages/StudyPlannerPage'));
+const GoalPlannerPage        = lazy(() => import('./pages/resources/tools/pages/GoalPlannerPage'));
+const ProductComparisonPage  = lazy(() => import('./pages/resources/tools/pages/ProductComparisonPage'));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -60,9 +77,31 @@ function AppWithConsent() {
               <Route path="/products" component={Products} />
               <Route path="/ai-tech-finder" component={AiTechFinder} />
               <Route path="/laptop-finder" component={LaptopFinder} />
+              <Route path="/compare" component={Compare} />
               <Route path="/blog" component={Blog} />
+              <Route path="/blog/:slug" component={BlogArticle} />
               <Route path="/reviews" component={Reviews} />
+              <Route path="/reviews/:slug" component={ReviewArticle} />
+
+              {/* Auth routes */}
+              <Route path="/login" component={LoginPage} />
+              <Route path="/signup" component={SignUpPage} />
+              <Route path="/forgot-password" component={ForgotPasswordPage} />
+
+              {/* Tech Toolkit — tool pages */}
+              <Route path="/resources/cgpa-calculator" component={CGPACalculatorPage} />
+              <Route path="/resources/emi-calculator" component={EMICalculatorPage} />
+              <Route path="/resources/study-planner" component={StudyPlannerPage} />
+              <Route path="/resources/goal-planner" component={GoalPlannerPage} />
+              <Route path="/resources/product-comparison">
+                {() => (
+                  <ProtectedRoute>
+                    <ProductComparisonPage />
+                  </ProtectedRoute>
+                )}
+              </Route>
               <Route path="/resources" component={Resources} />
+
               <Route path="/computers" component={Computers} />
               <Route path="/about" component={About} />
               <Route path="/contact" component={Contact} />
@@ -96,7 +135,9 @@ function App() {
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <ConsentProvider>
-          <AppWithConsent />
+          <AuthProvider>
+            <AppWithConsent />
+          </AuthProvider>
         </ConsentProvider>
       </QueryClientProvider>
     </HelmetProvider>

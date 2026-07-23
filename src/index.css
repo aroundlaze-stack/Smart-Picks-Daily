@@ -68,7 +68,9 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* DARK MODE ONLY APP */
+/* ══════════════════════════════════════════════════════════════════════════
+   DARK THEME (default)
+   ══════════════════════════════════════════════════════════════════════════ */
 :root {
   --button-outline: rgba(255, 255, 255, 0.1);
   --badge-outline: rgba(255, 255, 255, 0.05);
@@ -154,23 +156,6 @@
 
 /**
  * Using the elevate system.
- * Automatic contrast adjustment.
- *
- * <element className="hover-elevate" />
- * <element className="active-elevate-2" />
- *
- * // Using the tailwind utility when a data attribute is "on"
- * <element className="toggle-elevate data-[state=on]:toggle-elevated" />
- * // Or manually controlling the toggle state
- * <element className="toggle-elevate toggle-elevated" />
- *
- * Elevation systems have to handle many states.
- * - not-hovered, vs. hovered vs. active  (three mutually exclusive states)
- * - toggled or not
- * - focused or not (this is not handled with these utilities)
- *
- * Even without handling focused or not, this is six possible combinations that
- * need to be distinguished from eachother visually.
  */
 @layer utilities {
   /* Hide ugly search cancel button in Chrome until we can style it properly */
@@ -185,43 +170,30 @@
     pointer-events: none;
   }
 
-  /* .no-default-hover-elevate/no-default-active-elevate is an escape hatch so consumers of
-   * buttons/badges can remove the automatic brightness adjustment on interactions
-   * and program their own. */
   .no-default-hover-elevate {
   }
 
   .no-default-active-elevate {
   }
 
-  /**
-   * Toggleable backgrounds go behind the content. Hoverable/active goes on top.
-   * This way they can stack/compound. Both will overlap the parent's borders!
-   * So borders will be automatically adjusted both on toggle, and hover/active,
-   * and they will be compounded.
-   */
   .toggle-elevate::before,
   .toggle-elevate-2::before {
     content: '';
     pointer-events: none;
     position: absolute;
     inset: 0px;
-    /*border-radius: inherit;   match rounded corners */
     border-radius: inherit;
     z-index: -1;
-    /* sits behind content but above backdrop */
   }
 
   .toggle-elevate.toggle-elevated::before {
     background-color: var(--elevate-2);
   }
 
-  /* If there's a 1px border, adjust the inset so that it covers that parent's border */
   .border.toggle-elevate::before {
     inset: -1px;
   }
 
-  /* Does not work on elements with overflow:hidden! */
   .hover-elevate:not(.no-default-hover-elevate),
   .active-elevate:not(.no-default-active-elevate),
   .hover-elevate-2:not(.no-default-hover-elevate),
@@ -238,10 +210,8 @@
     pointer-events: none;
     position: absolute;
     inset: 0px;
-    /*border-radius: inherit;   match rounded corners */
     border-radius: inherit;
     z-index: 999;
-    /* sits in front of content */
   }
 
   .hover-elevate:hover:not(.no-default-hover-elevate)::after,
@@ -254,7 +224,6 @@
     background-color: var(--elevate-2);
   }
 
-  /* If there's a 1px border, adjust the inset so that it covers that parent's border */
   .border.hover-elevate:not(.no-hover-interaction-elevate)::after,
   .border.active-elevate:not(.no-active-interaction-elevate)::after,
   .border.hover-elevate-2:not(.no-hover-interaction-elevate)::after,
@@ -264,101 +233,510 @@
   }
 }
 
-/* ── Light mode overrides (applied via .light class on <html>) ── */
+/* ══════════════════════════════════════════════════════════════════════════
+   SMOOTH THEME TRANSITION
+   Applied as a class on <html> during the 350 ms switch window.
+   ══════════════════════════════════════════════════════════════════════════ */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition:
+    background-color 0.35s ease,
+    border-color 0.3s ease,
+    color 0.25s ease,
+    box-shadow 0.3s ease,
+    fill 0.25s ease,
+    stroke 0.25s ease !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PREMIUM LIGHT THEME — Chromatic Aurora
+   Mesmerizing violet-to-indigo gradient atmosphere.
+   Cards float on a gradient canvas with vivid colour accents.
+   ══════════════════════════════════════════════════════════════════════════ */
 .light {
-  --button-outline: rgba(0, 0, 0, 0.10);
-  --badge-outline: rgba(0, 0, 0, 0.07);
+  --button-outline: rgba(100, 60, 200, 0.14);
+  --badge-outline: rgba(100, 60, 200, 0.08);
   --opaque-button-border-intensity: 12;
-  --elevate-1: rgba(0, 0, 0, 0.04);
-  --elevate-2: rgba(0, 0, 0, 0.09);
+  --elevate-1: rgba(100, 60, 200, 0.05);
+  --elevate-2: rgba(100, 60, 200, 0.10);
 
-  /* Premium soft-white background with very light blue tint */
-  --background: 218 40% 98%;
-  /* High-contrast near-black foreground for readability */
-  --foreground: 222 47% 11%;
+  /* ── Background: rich violet-indigo pearl — NOT plain white ── */
+  --background: 252 42% 96%;
+  --foreground: 248 47% 10%;
 
-  /* Subtle but visible borders */
-  --border: 218 25% 84%;
+  /* ── Borders: purple-tinted ── */
+  --border: 255 28% 84%;
 
-  /* Cards: crisp white with soft shadow-ready base */
-  --card: 0 0% 100%;
-  --card-foreground: 222 47% 11%;
-  --card-border: 218 25% 87%;
+  /* ── Cards: luminous white with violet shimmer ── */
+  --card: 258 60% 99%;
+  --card-foreground: 248 47% 10%;
+  --card-border: 258 35% 89%;
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 222 47% 11%;
-  --popover-border: 218 25% 84%;
+  /* ── Popovers ── */
+  --popover: 258 60% 99%;
+  --popover-foreground: 248 47% 10%;
+  --popover-border: 255 28% 84%;
 
-  /* Electric blue primary — slightly deeper for light backgrounds (WCAG AA) */
-  --primary: 219 90% 48%;
+  /* ── Primary: vivid electric blue ── */
+  --primary: 219 90% 50%;
   --primary-foreground: 0 0% 100%;
 
-  /* Purple secondary — deepened for contrast on white */
-  --secondary: 262 75% 48%;
+  /* ── Secondary: vivid violet ── */
+  --secondary: 262 80% 50%;
   --secondary-foreground: 0 0% 100%;
 
-  /* Muted surfaces — light blue-grey, not plain grey */
-  --muted: 218 30% 93%;
-  /* Muted text — meets WCAG AA on white (4.5:1 ratio) */
-  --muted-foreground: 222 20% 32%;
+  /* ── Muted surfaces: lavender-tinted ── */
+  --muted: 255 30% 91%;
+  --muted-foreground: 248 30% 32%;
 
-  /* Cyan accent — darkened for light mode contrast */
-  --accent: 189 80% 32%;
+  /* ── Accent: electric teal ── */
+  --accent: 189 82% 32%;
   --accent-foreground: 0 0% 100%;
 
-  --destructive: 0 80% 48%;
+  --destructive: 0 82% 48%;
   --destructive-foreground: 0 0% 100%;
 
-  /* Inputs: slightly visible against background */
-  --input: 218 25% 88%;
-  --ring: 219 90% 48%;
+  --input: 255 25% 88%;
+  --ring: 262 80% 50%;
 
-  --chart-1: 219 90% 48%;
-  --chart-2: 262 75% 48%;
-  --chart-3: 189 80% 32%;
+  --chart-1: 219 90% 50%;
+  --chart-2: 262 80% 50%;
+  --chart-3: 189 82% 32%;
   --chart-4: 145 60% 36%;
-  --chart-5:  30 85% 44%;
+  --chart-5: 30 85% 45%;
 
-  --sidebar: 218 35% 95%;
-  --sidebar-foreground: 222 47% 11%;
-  --sidebar-border: 218 25% 84%;
-  --sidebar-primary: 219 90% 48%;
+  --sidebar: 255 40% 94%;
+  --sidebar-foreground: 248 47% 10%;
+  --sidebar-border: 255 28% 84%;
+  --sidebar-primary: 219 90% 50%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 218 30% 90%;
-  --sidebar-accent-foreground: 222 47% 11%;
-  --sidebar-ring: 219 90% 48%;
+  --sidebar-accent: 255 30% 91%;
+  --sidebar-accent-foreground: 248 47% 10%;
+  --sidebar-ring: 262 80% 50%;
+
+  /* ── Vivid colour-tinted shadows ── */
+  --shadow-2xs: 0 1px 2px 0 hsl(262 50% 45% / 0.07);
+  --shadow-xs:  0 1px 3px 0 hsl(262 50% 45% / 0.10);
+  --shadow-sm:  0 2px 4px -1px hsl(262 50% 45% / 0.13);
+  --shadow:     0 4px 8px -2px hsl(248 60% 42% / 0.14),
+                0 2px 4px -1px hsl(248 60% 42% / 0.08);
+  --shadow-md:  0 8px 16px -4px hsl(248 55% 40% / 0.15),
+                0 4px 8px -2px hsl(248 55% 40% / 0.09);
+  --shadow-lg:  0 16px 32px -8px hsl(248 50% 38% / 0.16),
+                0 8px 16px -4px hsl(248 50% 38% / 0.10);
+  --shadow-xl:  0 24px 48px -12px hsl(248 45% 35% / 0.18),
+                0 12px 24px -6px hsl(248 45% 35% / 0.11);
+  --shadow-2xl: 0 32px 64px -16px hsl(248 40% 32% / 0.22);
 }
 
-/* ── Light mode: fix hardcoded dark-only styles ── */
-.light .bg-black\/40,
-.light .bg-black\/50,
+/* ── Global gradient canvas for light mode ── */
+.light body {
+  background-image:
+    radial-gradient(ellipse 80% 60% at 20% -10%, hsl(262 80% 86% / 0.40) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 110%, hsl(219 90% 82% / 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, hsl(189 82% 88% / 0.20) 0%, transparent 60%);
+  background-attachment: fixed;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LIGHT THEME: UTILITY CLASS OVERRIDES
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Dark glass backgrounds → violet-tinted light surfaces ── */
+.light .bg-black\/70,
 .light .bg-black\/60,
-.light .bg-black\/70 {
-  background-color: rgba(230, 238, 255, 0.85) !important;
+.light .bg-black\/50,
+.light .bg-black\/40,
+.light .bg-black\/20 {
+  background-color: hsl(255, 35%, 93%) !important;
 }
 
-/* Ensure links and interactive text have sufficient contrast in light mode */
-.light a:not([class*="text-"]) {
-  color: hsl(219, 90%, 40%);
+/* ── White-tint borders → violet-tinted borders ── */
+.light .border-white\/5  { border-color: hsl(258, 28%, 90%) !important; }
+.light .border-white\/10 { border-color: hsl(258, 28%, 86%) !important; }
+.light .border-white\/20 { border-color: hsl(258, 28%, 78%) !important; }
+.light .border-white\/25 { border-color: hsl(258, 28%, 74%) !important; }
+
+/* ── White-tint surfaces → violet-pearl layered surfaces ── */
+.light .bg-white\/\[0\.02\] { background-color: hsl(258, 50%, 99%) !important; }
+.light .bg-white\/5  { background-color: hsl(258, 40%, 97%) !important; }
+.light .bg-white\/10 { background-color: hsl(258, 35%, 94%) !important; }
+.light .bg-white\/20 { background-color: hsl(258, 30%, 90%) !important; }
+
+/* ── White/opacity text → dark text ── */
+.light .text-white\/20 { color: hsl(222, 15%, 62%) !important; }
+.light .text-white\/40 { color: hsl(222, 18%, 48%) !important; }
+.light .text-white\/50 { color: hsl(222, 22%, 40%) !important; }
+.light .group-hover\:text-white:hover { color: hsl(222, 47%, 10%) !important; }
+
+/* ── Gradient text: from-white (no opacity) and to-white/45 → dark equivalents ── */
+.light .from-white {
+  --tw-gradient-from: hsl(222, 47%, 12%) var(--tw-gradient-from-position);
+}
+.light .to-white\/45 {
+  --tw-gradient-to: hsl(222, 25%, 38%) var(--tw-gradient-to-position);
 }
 
-/* Category pill border contrast in light mode */
-.light .border-white\/10 {
-  border-color: rgba(100, 130, 200, 0.25) !important;
+/* ── from-white/X gradient overrides ── */
+.light .from-white\/5  {
+  --tw-gradient-from: hsl(220, 28%, 96%) var(--tw-gradient-from-position);
+}
+.light .from-white\/10 {
+  --tw-gradient-from: hsl(220, 22%, 92%) var(--tw-gradient-from-position);
 }
 
-/* Search bar legibility in light mode */
-.light input[type="search"],
-.light input[type="email"],
-.light input[type="text"] {
-  color: hsl(222, 47%, 11%);
-  background-color: hsl(218, 30%, 96%);
+/* ── from-transparent gradient (hero edge fade) → background-tinted ── */
+.light .from-transparent {
+  --tw-gradient-from: hsl(220, 33%, 97%) var(--tw-gradient-from-position);
 }
 
-/* Footer link contrast in light mode */
+/* ── Divide lines ── */
+.light .divide-white\/5 > :not([hidden]) ~ :not([hidden]) {
+  border-color: hsl(220, 18%, 90%) !important;
+}
+
+/* ── Hover states ── */
+.light .hover\:bg-white\/10:hover  { background-color: hsl(220, 22%, 91%) !important; }
+.light .hover\:border-white\/20:hover { border-color: hsl(220, 18%, 77%) !important; }
+.light .hover\:border-white\/25:hover { border-color: hsl(220, 18%, 72%) !important; }
+.light .hover\:text-white:hover    { color: hsl(222, 47%, 10%) !important; }
+
+/* ── Inputs, selects, textareas ── */
+.light input[type='search'],
+.light input[type='email'],
+.light input[type='text'],
+.light input[type='number'],
+.light input[type='tel'],
+.light input[type='url'],
+.light select,
+.light textarea {
+  color: hsl(222, 47%, 10%);
+  background-color: hsl(220, 25%, 97%);
+  border-color: hsl(220, 20%, 87%);
+}
+.light input[type='search']:focus,
+.light input[type='email']:focus,
+.light input[type='text']:focus,
+.light input[type='number']:focus,
+.light input[type='tel']:focus,
+.light select:focus,
+.light textarea:focus {
+  border-color: hsl(219, 88%, 46%);
+  box-shadow: 0 0 0 3px hsl(219, 88%, 46% / 0.12);
+}
+.light input::placeholder,
+.light textarea::placeholder {
+  color: hsl(222, 18%, 54%) !important;
+}
+
+/* ── Dropdowns & Radix popover content ── */
+.light [data-radix-popper-content-wrapper] .bg-card\/95,
+.light .bg-card\/95 { background-color: hsl(0, 0%, 100%) !important; }
+.light .bg-card\/90 { background-color: hsl(220, 25%, 98%) !important; }
+
+/* ── Muted-foreground opacity utilities ── */
+.light .text-muted-foreground\/50 { color: hsl(222, 22%, 52%) !important; }
+.light .text-muted-foreground\/60 { color: hsl(222, 22%, 44%) !important; }
+
+/* ── Backdrop overlay panels ── */
+.light .bg-background\/50 { background-color: hsl(252, 42%, 95%) !important; }
+.light .bg-background\/80 { background-color: hsl(252, 42%, 96%) !important; }
+.light .bg-background\/95 { background-color: hsl(252, 42%, 97%) !important; }
+
+/* ── Navbar scrolled state ── */
+.light header .bg-background\/80 {
+  background-color: hsla(252, 42%, 97%, 0.95) !important;
+  border-bottom-color: hsl(258, 28%, 86%) !important;
+  box-shadow: 0 1px 12px 0 hsl(262 50% 45% / 0.12) !important;
+  backdrop-filter: blur(16px) !important;
+}
+
+/* ── Primary tint backgrounds ── */
+.light .bg-primary\/10 { background-color: hsl(219, 90%, 92%) !important; }
+.light .bg-primary\/20 { background-color: hsl(219, 90%, 86%) !important; }
+
+/* ── Footer ── */
 .light footer .text-muted-foreground {
-  color: hsl(222, 20%, 38%) !important;
+  color: hsl(248, 25%, 36%) !important;
 }
+.light footer .border-t {
+  border-color: hsl(258, 28%, 84%) !important;
+}
+
+/* ── Focus ring offset ── */
+.light .focus-visible\:ring-offset-background:focus-visible {
+  --tw-ring-offset-color: hsl(252, 42%, 96%);
+}
+
+/* ── Prose (legal pages) ── */
+.light .prose-invert {
+  --tw-prose-body: hsl(222, 47%, 10%);
+  --tw-prose-headings: hsl(222, 47%, 10%);
+  --tw-prose-links: hsl(219, 88%, 46%);
+  --tw-prose-bold: hsl(222, 47%, 10%);
+  --tw-prose-counters: hsl(222, 22%, 38%);
+  --tw-prose-bullets: hsl(220, 18%, 58%);
+  --tw-prose-hr: hsl(220, 18%, 84%);
+  --tw-prose-quotes: hsl(222, 47%, 10%);
+  --tw-prose-quote-borders: hsl(219, 88%, 46%);
+  --tw-prose-captions: hsl(222, 22%, 38%);
+  --tw-prose-code: hsl(222, 47%, 10%);
+  --tw-prose-pre-code: hsl(222, 22%, 38%);
+  --tw-prose-pre-bg: hsl(220, 25%, 93%);
+  --tw-prose-th-borders: hsl(220, 18%, 80%);
+  --tw-prose-td-borders: hsl(220, 18%, 88%);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LIGHT THEME: FEATURED PRODUCTS BENTO CARDS
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Hero bento cards (gradient bg) */
+.light .bg-gradient-to-br.border-white\/10.rounded-3xl {
+  border-color: hsl(258, 30%, 85%) !important;
+  box-shadow: 0 4px 24px -6px hsl(262 55% 44% / 0.13),
+              0 2px 8px -2px hsl(262 55% 44% / 0.08) !important;
+}
+.light .bg-gradient-to-br.border-white\/10.rounded-3xl:hover {
+  border-color: hsl(262, 50%, 74%) !important;
+  box-shadow: 0 12px 40px -10px hsl(262 65% 44% / 0.18),
+              0 6px 16px -4px hsl(262 65% 44% / 0.10) !important;
+}
+
+/* Vertical bento cards (bg-white/5) */
+.light .bg-white\/5.border-white\/10.rounded-2xl {
+  background-color: hsl(258, 60%, 99%) !important;
+  border-color: hsl(258, 35%, 89%) !important;
+  box-shadow: 0 2px 12px -4px hsl(262 55% 44% / 0.10),
+              0 1px 4px -1px hsl(262 55% 44% / 0.07) !important;
+}
+.light .bg-white\/5.border-white\/10.rounded-2xl:hover {
+  background-color: hsl(258, 50%, 98%) !important;
+  border-color: hsl(262, 60%, 78%) !important;
+  box-shadow: 0 10px 32px -8px hsl(262 65% 44% / 0.16),
+              0 4px 12px -3px hsl(262 65% 44% / 0.09) !important;
+}
+
+/* Image containers inside bento */
+.light .bg-gradient-to-br.from-white\/\[0\.03\] {
+  background: linear-gradient(135deg, hsl(258, 45%, 97%), hsl(252, 40%, 99%)) !important;
+}
+
+/* ── Custom scrollbar for light mode ── */
+.light ::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+.light ::-webkit-scrollbar-track {
+  background: hsl(255, 30%, 91%);
+}
+.light ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, hsl(262, 60%, 72%), hsl(219, 70%, 68%));
+  border-radius: 9999px;
+}
+.light ::-webkit-scrollbar-thumb:hover {
+  background: hsl(262, 70%, 58%);
+}
+
+/* ── Selection colour — vivid violet ── */
+.light ::selection {
+  background-color: hsl(262 80% 50% / 0.18);
+  color: hsl(262, 80%, 20%);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   DATA-FORCE-DARK
+   Sections that stay intentionally dark even when the light theme is active.
+   Apply [data-force-dark] to the section element in JSX.
+   ══════════════════════════════════════════════════════════════════════════ */
+.light [data-force-dark] {
+  /* Reset all design tokens to dark values inside this section */
+  --background: 229 63% 5%;
+  --foreground: 224 100% 97%;
+  --card: 240 54% 8%;
+  --card-foreground: 224 100% 97%;
+  --card-border: 240 54% 15%;
+  --muted: 240 54% 15%;
+  --muted-foreground: 220 20% 70%;
+  --border: 240 54% 11%;
+  --primary: 219 100% 65%;
+  --secondary: 262 83% 58%;
+  --accent: 189 94% 43%;
+  --elevate-1: rgba(255, 255, 255, 0.04);
+  --elevate-2: rgba(255, 255, 255, 0.09);
+
+  /* Explicit dark background + text so nothing bleeds through */
+  background-color: hsl(229, 58%, 7%) !important;
+  color: hsl(224, 100%, 97%);
+
+  /* Subtle top/bottom gradient for premium depth */
+  background-image: linear-gradient(
+    180deg,
+    hsl(229, 60%, 8%) 0%,
+    hsl(240, 55%, 6%) 50%,
+    hsl(229, 60%, 8%) 100%
+  ) !important;
+}
+
+/* Undo the light-mode utility overrides inside force-dark sections */
+.light [data-force-dark] .bg-black\/70 { background-color: rgba(0,0,0,0.70) !important; }
+.light [data-force-dark] .bg-black\/60 { background-color: rgba(0,0,0,0.60) !important; }
+.light [data-force-dark] .bg-black\/50 { background-color: rgba(0,0,0,0.50) !important; }
+.light [data-force-dark] .bg-black\/40 { background-color: rgba(0,0,0,0.40) !important; }
+.light [data-force-dark] .bg-black\/20 { background-color: rgba(0,0,0,0.20) !important; }
+
+.light [data-force-dark] .border-white\/5  { border-color: rgba(255,255,255,0.05) !important; }
+.light [data-force-dark] .border-white\/10 { border-color: rgba(255,255,255,0.10) !important; }
+.light [data-force-dark] .border-white\/20 { border-color: rgba(255,255,255,0.20) !important; }
+.light [data-force-dark] .border-white\/25 { border-color: rgba(255,255,255,0.25) !important; }
+
+.light [data-force-dark] .bg-white\/\[0\.02\] { background-color: rgba(255,255,255,0.02) !important; }
+.light [data-force-dark] .bg-white\/5  { background-color: rgba(255,255,255,0.05) !important; }
+.light [data-force-dark] .bg-white\/10 { background-color: rgba(255,255,255,0.10) !important; }
+.light [data-force-dark] .bg-white\/20 { background-color: rgba(255,255,255,0.20) !important; }
+
+.light [data-force-dark] .bg-muted\/30 { background-color: rgba(255,255,255,0.04) !important; }
+
+.light [data-force-dark] .text-white\/20 { color: rgba(255,255,255,0.20) !important; }
+.light [data-force-dark] .text-white\/40 { color: rgba(255,255,255,0.40) !important; }
+.light [data-force-dark] .text-white\/50 { color: rgba(255,255,255,0.50) !important; }
+.light [data-force-dark] .group-hover\:text-white:hover { color: hsl(0,0%,100%) !important; }
+
+/* Restore dark gradient text inside force-dark sections */
+.light [data-force-dark] .from-white {
+  --tw-gradient-from: hsl(224, 100%, 97%) var(--tw-gradient-from-position);
+}
+.light [data-force-dark] .to-white\/45 {
+  --tw-gradient-to: rgba(240, 244, 255, 0.45) var(--tw-gradient-to-position);
+}
+.light [data-force-dark] .from-white\/5 {
+  --tw-gradient-from: rgba(255,255,255,0.05) var(--tw-gradient-from-position);
+}
+.light [data-force-dark] .from-white\/10 {
+  --tw-gradient-from: rgba(255,255,255,0.10) var(--tw-gradient-from-position);
+}
+
+.light [data-force-dark] .divide-white\/5 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(255,255,255,0.05) !important;
+}
+
+.light [data-force-dark] .hover\:bg-white\/10:hover {
+  background-color: rgba(255,255,255,0.10) !important;
+}
+.light [data-force-dark] .hover\:border-white\/25:hover {
+  border-color: rgba(255,255,255,0.25) !important;
+}
+.light [data-force-dark] .hover\:text-white:hover {
+  color: hsl(0,0%,100%) !important;
+}
+
+.light [data-force-dark] .text-muted-foreground {
+  color: hsl(220, 20%, 68%) !important;
+}
+.light [data-force-dark] .text-muted-foreground\/50 {
+  color: rgba(160,174,202,0.50) !important;
+}
+.light [data-force-dark] .text-muted-foreground\/60 {
+  color: rgba(160,174,202,0.60) !important;
+}
+
+.light [data-force-dark] .bg-card { background-color: hsl(240, 54%, 8%) !important; }
+.light [data-force-dark] .bg-background { background-color: hsl(229, 63%, 5%) !important; }
+.light [data-force-dark] .bg-background\/95 { background-color: rgba(5,8,22,0.95) !important; }
+.light [data-force-dark] .bg-secondary\/10 { background-color: rgba(124,58,237,0.10) !important; }
+.light [data-force-dark] .bg-primary\/10 { background-color: rgba(79,140,255,0.10) !important; }
+.light [data-force-dark] .bg-primary\/20 { background-color: rgba(79,140,255,0.20) !important; }
+
+/* Restore dark border colors */
+.light [data-force-dark] .border-white\/5.border-y,
+.light [data-force-dark].border-y { border-color: rgba(255,255,255,0.05) !important; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LIGHT THEME: COMPONENT-LEVEL IMPROVEMENTS
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Cards: elevated floating look ── */
+.light .rounded-2xl,
+.light .rounded-3xl,
+.light .rounded-xl {
+  /* Cards with bg-white/5 pattern get proper card treatment */
+}
+
+/* Category cards get premium violet-tinted shadow */
+.light .group.relative.bg-white\/5 {
+  background-color: hsl(258, 60%, 99%) !important;
+  box-shadow: 0 4px 16px -4px hsl(262 55% 44% / 0.11),
+              0 2px 6px -1px hsl(262 55% 44% / 0.08) !important;
+}
+.light .group.relative.bg-white\/5:hover {
+  box-shadow: 0 12px 32px -8px hsl(262 65% 44% / 0.18),
+              0 6px 14px -4px hsl(262 65% 44% / 0.10) !important;
+}
+
+/* Testimonial cards */
+.light .bg-muted\/30.border-white\/10 {
+  background-color: hsl(258, 60%, 99%) !important;
+  border-color: hsl(258, 35%, 87%) !important;
+  box-shadow: 0 4px 14px -4px hsl(262 55% 44% / 0.10) !important;
+}
+.light .bg-muted\/30.border-white\/10:hover {
+  box-shadow: 0 8px 24px -6px hsl(262 65% 46% / 0.16) !important;
+}
+
+/* Newsletter / hero glass cards */
+.light .bg-gradient-to-b.border-white\/10.rounded-3xl {
+  background: linear-gradient(180deg,
+    hsl(258, 45%, 97%) 0%,
+    hsl(252, 50%, 99%) 100%) !important;
+  border-color: hsl(258, 30%, 86%) !important;
+  box-shadow: 0 8px 32px -8px hsl(262 60% 44% / 0.12) !important;
+}
+
+/* Icon container in category cards */
+.light .bg-background.border-white\/5 {
+  background-color: hsl(255, 35%, 94%) !important;
+  border-color: hsl(258, 30%, 88%) !important;
+}
+.light .bg-background.border-white\/5.group-hover\:border-white\/20 {
+  background-color: hsl(255, 35%, 92%) !important;
+}
+
+/* Explore button (navbar CTA) */
+.light .bg-primary\/10.hover\:bg-primary {
+  background-color: hsl(219, 90%, 93%) !important;
+  border-color: hsl(262, 70%, 78%) !important;
+}
+.light .bg-primary\/10.hover\:bg-primary:hover {
+  background-color: hsl(219, 90%, 50%) !important;
+  border-color: hsl(219, 90%, 50%) !important;
+}
+
+/* Badge / pill treatments */
+.light .bg-primary\/10.border-primary\/20 {
+  background-color: hsl(219, 90%, 92%) !important;
+  border-color: hsl(262, 60%, 80%) !important;
+}
+
+/* Mobile menu overlay */
+.light .fixed.inset-0.bg-background\/95 {
+  background-color: hsla(252, 42%, 97%, 0.97) !important;
+  backdrop-filter: blur(16px) !important;
+}
+
+/* ── Scrollbar (global) — violet tinted ── */
+.light ::-webkit-scrollbar { width: 7px; height: 7px; }
+.light ::-webkit-scrollbar-track { background: hsl(255, 30%, 91%); }
+.light ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, hsl(262, 60%, 72%), hsl(219, 70%, 68%));
+  border-radius: 9999px;
+}
+.light ::-webkit-scrollbar-thumb:hover { background: hsl(262, 70%, 58%); }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   UTILITIES
+   ══════════════════════════════════════════════════════════════════════════ */
 
 /* Utility: hide scrollbar while keeping scroll functionality */
 .hide-scrollbar {
@@ -369,7 +747,7 @@
   display: none;
 }
 
-/* ── Accessibility: respect reduced-motion preference ───────────────────── */
+/* ── Accessibility: respect reduced-motion preference ── */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -381,7 +759,7 @@
   }
 }
 
-/* ── Focus ring for keyboard navigation ─────────────────────────────────── */
+/* ── Focus ring for keyboard navigation ── */
 :focus-visible {
   outline: 2px solid hsl(var(--primary));
   outline-offset: 2px;

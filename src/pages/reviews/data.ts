@@ -1,0 +1,99 @@
+export interface Review {
+  slug: string;
+  category: string;
+  score: number;
+  title: string;
+  date: string;
+  read: string;
+  excerpt: string;
+  heroColor: string;
+  icon: string;
+  featured?: boolean;
+  editorChoice?: boolean;
+}
+
+export const REVIEWS: Review[] = [
+  {
+    slug: 'msi-katana-17-review',
+    category: 'Laptop',
+    score: 4.8,
+    title: "MSI Katana 17 Review — Editor's Choice",
+    date: 'July 1, 2026',
+    read: '9 min',
+    excerpt: "The mid-range king returns with an RTX 4070 that punches above its weight class. Consistently hits 100+ FPS at 1440p. Keyboard has excellent travel. Surprisingly quiet under full load. Battery life is abysmal under 3 hours.",
+    heroColor: 'from-red-500/30',
+    icon: '💻',
+    featured: true,
+    editorChoice: true,
+  },
+  {
+    slug: 'best-gaming-monitors-2026',
+    category: 'Monitor',
+    score: 4.7,
+    title: 'Best Gaming Monitors of 2026',
+    date: 'July 10, 2026',
+    read: '8 min',
+    excerpt: 'From 144Hz budget panels to blazing 360Hz OLED monsters — we benchmarked 12 monitors across every price bracket to find the ones worth your money.',
+    heroColor: 'from-cyan-500/30',
+    icon: '🖥️',
+  },
+  {
+    slug: 'best-wireless-headphones',
+    category: 'Audio',
+    score: 4.5,
+    title: 'Best Wireless Headphones 2026',
+    date: 'July 14, 2026',
+    read: '7 min',
+    excerpt: 'Noise cancellation wars, spatial audio, and battery life tested head-to-head. We put 10 pairs through 40 hours of real-world listening to find the best.',
+    heroColor: 'from-purple-500/30',
+    icon: '🎧',
+  },
+  {
+    slug: 'best-wireless-mouse',
+    category: 'Accessories',
+    score: 4.6,
+    title: 'Best Wireless Mouse for Gaming & Work',
+    date: 'July 18, 2026',
+    read: '6 min',
+    excerpt: "Latency, battery life, and sensor accuracy tested across 8 wireless mice. The gap between wired and wireless has never been smaller — here's who leads.",
+    heroColor: 'from-green-500/30',
+    icon: '🖱️',
+  },
+  {
+    slug: 'best-mechanical-keyboards',
+    category: 'Keyboard',
+    score: 4.8,
+    title: 'Best Mechanical Keyboards of 2026',
+    date: 'July 20, 2026',
+    read: '5 min',
+    excerpt: 'Linear, tactile, clicky — we tested 9 keyboards across switch types and price points. Whether you type all day or game all night, there is a perfect board here.',
+    heroColor: 'from-violet-500/30',
+    icon: '⌨️',
+  },
+  {
+    slug: 'best-external-ssds',
+    category: 'Storage',
+    score: 4.4,
+    title: 'Best External SSDs of 2026',
+    date: 'July 21, 2026',
+    read: '6 min',
+    excerpt: 'USB 3.2, Thunderbolt 4, and NVMe enclosures benchmarked with real-world file transfers. Speed, durability, and value across every budget.',
+    heroColor: 'from-orange-500/30',
+    icon: '💾',
+  },
+  {
+    slug: 'best-gaming-laptops',
+    category: 'Laptop',
+    score: 4.9,
+    title: 'Best Gaming Laptops of 2026',
+    date: 'July 22, 2026',
+    read: '10 min',
+    excerpt: 'RTX 50-series is here and we tested the best of them. From budget 1080p machines to 4K OLED powerhouses, this is the definitive 2026 gaming laptop guide.',
+    heroColor: 'from-red-500/30',
+    icon: '🎮',
+  },
+];
+
+export function getReview(slug: string): Review | undefined {
+  return REVIEWS.find(r => r.slug === slug);
+}

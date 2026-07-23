@@ -7,52 +7,21 @@ import {
   Zap,
   Cpu,
   Award,
-  Brain,
-  BookOpen,
-  BarChart3,
-  TrendingDown,
+  CheckCircle2,
+  ArrowRight,
+  Sparkles,
+  ShoppingCart,
 } from 'lucide-react';
 import { SEO } from '../components/seo';
 import { AIIntelligenceCore } from '../components/3d/AIIntelligenceCore';
 
-// ── Feature strip cards ──────────────────────────────────────────────────────
+// ── Trust badges ────────────────────────────────────────────────────────────
 
-const FEATURES = [
-  {
-    icon: Brain,
-    label: 'AI Recommendations',
-    gradient: 'from-blue-500/25 to-blue-500/5',
-    border: 'border-blue-500/25',
-    hoverShadow: 'hover:shadow-[0_0_22px_rgba(79,140,255,0.35)]',
-  },
-  {
-    icon: Award,
-    label: 'Expert Reviews',
-    gradient: 'from-purple-500/25 to-purple-500/5',
-    border: 'border-purple-500/25',
-    hoverShadow: 'hover:shadow-[0_0_22px_rgba(124,58,237,0.35)]',
-  },
-  {
-    icon: BookOpen,
-    label: 'Buying Guides',
-    gradient: 'from-cyan-500/25 to-cyan-500/5',
-    border: 'border-cyan-500/25',
-    hoverShadow: 'hover:shadow-[0_0_22px_rgba(6,182,212,0.35)]',
-  },
-  {
-    icon: BarChart3,
-    label: 'Verified Benchmarks',
-    gradient: 'from-green-500/25 to-green-500/5',
-    border: 'border-green-500/25',
-    hoverShadow: 'hover:shadow-[0_0_22px_rgba(34,197,94,0.35)]',
-  },
-  {
-    icon: TrendingDown,
-    label: 'Price Tracking',
-    gradient: 'from-orange-500/25 to-orange-500/5',
-    border: 'border-orange-500/25',
-    hoverShadow: 'hover:shadow-[0_0_22px_rgba(249,115,22,0.35)]',
-  },
+const TRUST_BADGES = [
+  { label: 'Honest Reviews' },
+  { label: 'AI Recommendations' },
+  { label: 'Buying Guides' },
+  { label: 'Updated Weekly' },
 ] as const;
 
 // ── Stats bar ────────────────────────────────────────────────────────────────
@@ -63,6 +32,83 @@ const STATS = [
   { value: 'India-First',     label: 'Audience Focus'      },
   { value: 'Research-Driven', label: 'Recommendations'     },
 ];
+
+// ── Featured products ─────────────────────────────────────────────────────────
+
+const FEATURED_PRODUCTS = [
+  {
+    name: 'Sony WH-1000XM5',
+    category: 'Wireless Headphones',
+    price: '₹24,990',
+    rating: 4.8,
+    reviews: 12840,
+    badge: 'Best Headphones',
+    badgeColor: 'text-accent border-accent/30 bg-accent/10',
+    image: 'https://m.media-amazon.com/images/I/61vG9Iu0VIL._AC_SL1500_.jpg',
+    amazonUrl: 'https://www.amazon.in/dp/B09XS7JWHH',
+    blurb: 'Industry-leading ANC with 30-hour battery. The one to beat.',
+  },
+  {
+    name: 'Apple MacBook Air 15" (M3)',
+    category: 'Ultrabooks',
+    price: '₹1,34,900',
+    rating: 4.9,
+    reviews: 8320,
+    badge: 'Best Value',
+    badgeColor: 'text-primary border-primary/30 bg-primary/10',
+    image: 'https://m.media-amazon.com/images/I/31d9GFLKHDL._AC_SL1000_.jpg',
+    amazonUrl: 'https://www.amazon.in/dp/B0CX239WHB',
+    blurb: 'Fanless silence, all-day battery, gorgeous 15″ Liquid Retina display.',
+  },
+  {
+    name: 'Keychron K2 Pro',
+    category: 'Mechanical Keyboards',
+    price: '₹8,999',
+    rating: 4.7,
+    reviews: 5610,
+    badge: 'Top Keyboard',
+    badgeColor: 'text-secondary border-secondary/30 bg-secondary/10',
+    image: 'https://m.media-amazon.com/images/I/71tF6Hdo1bL._AC_SL1500_.jpg',
+    amazonUrl: 'https://www.amazon.in/dp/B0C3MXCX1L',
+    blurb: 'Hot-swappable switches, QMK/VIA support, and Bluetooth 5.1.',
+  },
+  {
+    name: 'LG UltraGear 27GP850-B',
+    category: 'Gaming Monitors',
+    price: '₹32,999',
+    rating: 4.6,
+    reviews: 9140,
+    badge: "Editor's Pick",
+    badgeColor: 'text-accent border-accent/30 bg-accent/10',
+    image: 'https://m.media-amazon.com/images/I/81L9sp6gEEL._AC_SL1500_.jpg',
+    amazonUrl: 'https://www.amazon.in/dp/B096VH7DZQ',
+    blurb: '27″ Nano IPS, 165 Hz, 1 ms — buttery smooth at 1440p.',
+  },
+  {
+    name: 'Logitech MX Master 3S',
+    category: 'Wireless Mice',
+    price: '₹8,995',
+    rating: 4.7,
+    reviews: 7280,
+    badge: 'Best Mouse',
+    badgeColor: 'text-primary border-primary/30 bg-primary/10',
+    image: 'https://m.media-amazon.com/images/I/61aNhLXiL0L._AC_SL1500_.jpg',
+    amazonUrl: 'https://www.amazon.in/dp/B09HMKFDXC',
+    blurb: '8K-DPI MagSpeed scroll, whisper-quiet clicks, 70-day battery.',
+  },
+  {
+    name: 'ASUS ROG Zephyrus G14 (2024)',
+    category: 'Gaming Laptops',
+    price: '₹1,58,000',
+    rating: 4.5,
+    reviews: 3920,
+    badge: "Editor's Pick",
+    badgeColor: 'text-secondary border-secondary/30 bg-secondary/10',
+    image: 'https://m.media-amazon.com/images/I/81PmJl9r3fL._AC_SL1500_.jpg',
+    amazonUrl: 'https://www.amazon.in/dp/B0CYYPQNMK',
+    blurb: 'Compact 14″ powerhouse — RTX 4060 Ti meets the AniMe Matrix lid.',
+  },
+] as const;
 
 // ── Category cards ───────────────────────────────────────────────────────────
 
@@ -164,25 +210,26 @@ export default function Home() {
                   initial={{ opacity: 0, scale: 0.88 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.45, delay: 0.08 }}
-                  className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-primary mb-6 backdrop-blur-md"
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-semibold text-primary mb-6 backdrop-blur-md"
                 >
                   <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                  Updated July 2026
+                  Expert-led tech reviews &amp; guides
                 </motion.div>
 
                 {/* Headline */}
                 <h1 className="text-5xl md:text-6xl xl:text-7xl font-display font-bold leading-tight tracking-tighter mb-6 text-balance">
-                  Navigate the{' '}
+                  Find the Right Tech{' '}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-                    Tech Universe
-                  </span>{' '}
-                  with Certainty.
+                    with Confidence
+                  </span>
+                  .
                 </h1>
 
                 {/* Sub-copy */}
-                <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl leading-relaxed">
-                  Every gadget put through its paces. Every buying guide agonized
-                  over. Stop guessing — start building your perfect setup.
+                <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-xl leading-relaxed">
+                  Expert reviews, in-depth buying guides, AI-powered recommendations,
+                  and honest product comparisons — so you can make informed decisions
+                  without the marketing noise.
                 </p>
 
                 {/* CTA buttons */}
@@ -190,47 +237,41 @@ export default function Home() {
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }}>
                     <Link
                       href="/products"
-                      className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-full font-bold text-lg transition-all shadow-[0_0_20px_rgba(79,140,255,0.4)] hover:shadow-[0_0_36px_rgba(79,140,255,0.65)]"
+                      className="inline-flex items-center gap-2.5 bg-primary hover:bg-primary/90 text-primary-foreground px-7 py-4 rounded-full font-bold text-base md:text-lg transition-all shadow-[0_0_24px_rgba(79,140,255,0.35)] hover:shadow-[0_0_38px_rgba(79,140,255,0.6)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     >
-                      <Zap size={20} />
-                      Explore Top Picks
+                      <Zap size={18} />
+                      Explore Products
+                      <ArrowRight size={16} className="ml-1" />
                     </Link>
                   </motion.div>
 
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }}>
                     <Link
-                      href="/reviews"
-                      className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-foreground border border-white/10 hover:border-white/25 px-8 py-4 rounded-full font-bold text-lg transition-all backdrop-blur-md"
+                      href="/ai-tech-finder"
+                      className="inline-flex items-center gap-2.5 bg-white/5 hover:bg-white/10 text-foreground border border-white/10 hover:border-white/25 px-7 py-4 rounded-full font-bold text-base md:text-lg transition-all backdrop-blur-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     >
-                      Read Expert Reviews
+                      <Sparkles size={18} />
+                      Try AI Finder
                     </Link>
                   </motion.div>
                 </div>
 
-                {/* ── Feature strip ── */}
-                <div className="flex flex-wrap gap-2.5">
-                  {FEATURES.map((f, i) => {
-                    const Icon = f.icon;
-                    return (
-                      <motion.div
-                        key={f.label}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5 + i * 0.07, duration: 0.4 }}
-                        whileHover={{ scale: 1.07, y: -3 }}
-                        whileTap={{ scale: 0.97 }}
-                        className={`group flex items-center gap-2 px-3.5 py-2 rounded-xl bg-gradient-to-b ${f.gradient} border ${f.border} backdrop-blur-sm transition-all duration-300 ${f.hoverShadow} cursor-default`}
-                      >
-                        <Icon
-                          size={13}
-                          className="text-foreground/65 group-hover:text-foreground transition-colors"
-                        />
-                        <span className="text-xs font-semibold text-foreground/80 group-hover:text-foreground transition-colors whitespace-nowrap">
-                          {f.label}
-                        </span>
-                      </motion.div>
-                    );
-                  })}
+                {/* ── Trust badges ── */}
+                <div className="flex flex-wrap gap-3">
+                  {TRUST_BADGES.map((badge, i) => (
+                    <motion.div
+                      key={badge.label}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 + i * 0.07, duration: 0.4 }}
+                      className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm"
+                    >
+                      <CheckCircle2 size={14} className="text-primary flex-shrink-0" />
+                      <span className="text-sm font-medium text-foreground/80 whitespace-nowrap">
+                        {badge.label}
+                      </span>
+                    </motion.div>
+                  ))}
                 </div>
               </motion.div>
             </div>
@@ -272,7 +313,7 @@ export default function Home() {
       </section>
 
       {/* ═══ STATS BAR ══════════════════════════════════════════════════════ */}
-      <section className="py-20 border-y border-white/5 bg-black/40 backdrop-blur-sm">
+      <section data-force-dark className="py-20 border-y border-white/5 bg-muted/30 backdrop-blur-sm">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center md:divide-x divide-white/5">
             {STATS.map((s, i) => (
@@ -284,7 +325,7 @@ export default function Home() {
                 transition={{ delay: i * 0.1 }}
                 className="flex flex-col items-center justify-center p-4"
               >
-                <div className="text-4xl md:text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/45 mb-2">
+                <div className="text-4xl md:text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-slate-300 mb-2">
                   {s.value}
                 </div>
                 <div className="text-sm text-muted-foreground uppercase tracking-wider font-medium">
@@ -325,7 +366,7 @@ export default function Home() {
                 >
                   {/* Decorative corner sweep */}
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white/5 to-transparent rounded-bl-full -mr-16 -mt-16 transition-transform group-hover:scale-150" />
-                  <div className="mb-6 w-16 h-16 rounded-xl bg-black/50 border border-white/5 flex items-center justify-center group-hover:scale-110 group-hover:border-white/20 transition-all duration-300">
+                  <div className="mb-6 w-16 h-16 rounded-xl bg-background border border-white/5 flex items-center justify-center group-hover:scale-110 group-hover:border-white/20 transition-all duration-300">
                     {cat.icon}
                   </div>
                   <h3 className="text-2xl font-display font-bold mb-3">
@@ -339,10 +380,283 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══ FEATURED PRODUCTS — BENTO SHOWCASE ══════════════════════════ */}
+      <section className="py-28 overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6">
+
+          {/* ── Section header ── */}
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.88 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-semibold text-primary mb-6"
+            >
+              <ShoppingCart size={13} />
+              Smart Picks Daily Recommends
+            </motion.div>
+            <h2 className="text-3xl md:text-5xl font-display font-bold mb-5">
+              Featured Picks
+            </h2>
+            <p className="text-muted-foreground text-lg leading-relaxed">
+              Hand-tested and independently recommended — the best tech across
+              every budget, curated just for you.
+            </p>
+          </div>
+
+          {/* ── Bento grid ── */}
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-4 md:gap-5">
+
+            {/* ── CARD 1: Sony WH-1000XM5 — full-width hero, horizontal ── */}
+            <motion.div
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="md:col-span-6 group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-accent/8 via-background to-primary/5 hover:border-white/20 transition-all duration-500 hover:shadow-[0_0_48px_rgba(6,182,212,0.12)] min-h-[260px] md:min-h-[300px]"
+            >
+              {/* Ambient glow */}
+              <div className="absolute top-0 right-1/3 w-64 h-64 bg-accent/10 blur-[80px] rounded-full pointer-events-none" />
+              <div className="flex flex-col md:flex-row items-center h-full">
+                {/* Text side */}
+                <div className="flex-1 p-7 md:p-10 z-10">
+                  <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold border border-accent/30 bg-accent/10 text-accent mb-4">
+                    {FEATURED_PRODUCTS[0].badge}
+                  </span>
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-2">
+                    {FEATURED_PRODUCTS[0].category}
+                  </p>
+                  <h3 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-3">
+                    {FEATURED_PRODUCTS[0].name}
+                  </h3>
+                  <p className="text-muted-foreground mb-5 max-w-md leading-relaxed">
+                    {FEATURED_PRODUCTS[0].blurb}
+                  </p>
+                  <div className="flex items-center gap-2 mb-6">
+                    <div className="flex text-primary">
+                      {[1,2,3,4,5].map(s => <Star key={s} size={13} fill="currentColor" />)}
+                    </div>
+                    <span className="text-sm font-semibold text-foreground">{FEATURED_PRODUCTS[0].rating}</span>
+                    <span className="text-sm text-muted-foreground">({FEATURED_PRODUCTS[0].reviews.toLocaleString('en-IN')} reviews)</span>
+                  </div>
+                  <div className="flex items-center gap-5">
+                    <span className="text-3xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+                      {FEATURED_PRODUCTS[0].price}
+                    </span>
+                    <Link
+                      href="/products"
+                      className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-5 py-2.5 rounded-full text-sm font-bold transition-all shadow-[0_0_20px_rgba(79,140,255,0.3)] hover:shadow-[0_0_30px_rgba(79,140,255,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    >
+                      <ShoppingCart size={14} />
+                      View Deal
+                    </Link>
+                  </div>
+                </div>
+                {/* Image side */}
+                <div className="w-full md:w-80 lg:w-96 h-56 md:h-full flex items-center justify-center p-6 md:p-8 flex-shrink-0">
+                  <img
+                    src={FEATURED_PRODUCTS[0].image}
+                    alt={FEATURED_PRODUCTS[0].name}
+                    loading="lazy"
+                    className="max-h-52 md:max-h-64 w-auto object-contain drop-shadow-2xl transition-transform duration-700 group-hover:scale-105"
+                    onError={e => { e.currentTarget.style.display = 'none'; }}
+                  />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* ── CARDS 2–4: three vertical cards ── */}
+            {([1, 2, 3] as const).map((idx, i) => (
+              <motion.div
+                key={FEATURED_PRODUCTS[idx].name}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 + i * 0.1, duration: 0.55 }}
+                whileHover={{ y: -6 }}
+                className="md:col-span-2 group relative bg-white/5 border border-white/10 rounded-2xl overflow-hidden transition-all duration-500 hover:bg-white/8 hover:border-white/20 hover:shadow-[0_0_28px_rgba(79,140,255,0.11)] flex flex-col"
+              >
+                {/* Badge */}
+                <div className="absolute top-3 left-3 z-10">
+                  <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold border ${FEATURED_PRODUCTS[idx].badgeColor}`}>
+                    {FEATURED_PRODUCTS[idx].badge}
+                  </span>
+                </div>
+                {/* Image */}
+                <div className="relative w-full aspect-[4/3] overflow-hidden flex items-center justify-center bg-gradient-to-br from-white/[0.03] to-transparent">
+                  <img
+                    src={FEATURED_PRODUCTS[idx].image}
+                    alt={FEATURED_PRODUCTS[idx].name}
+                    loading="lazy"
+                    className="w-full h-full object-contain p-5 transition-transform duration-500 group-hover:scale-108"
+                    onError={e => { e.currentTarget.style.display = 'none'; }}
+                  />
+                </div>
+                {/* Body */}
+                <div className="flex flex-col flex-1 p-5">
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-1.5">
+                    {FEATURED_PRODUCTS[idx].category}
+                  </p>
+                  <h3 className="text-base font-bold text-foreground mb-2 leading-snug">
+                    {FEATURED_PRODUCTS[idx].name}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed flex-1">
+                    {FEATURED_PRODUCTS[idx].blurb}
+                  </p>
+                  <div className="flex items-center gap-1.5 mb-4">
+                    <div className="flex text-primary">
+                      {[1,2,3,4,5].map(s => (
+                        <Star key={s} size={11} fill={s <= Math.round(FEATURED_PRODUCTS[idx].rating) ? 'currentColor' : 'none'} className={s <= Math.round(FEATURED_PRODUCTS[idx].rating) ? '' : 'opacity-25'} />
+                      ))}
+                    </div>
+                    <span className="text-xs font-semibold text-foreground">{FEATURED_PRODUCTS[idx].rating}</span>
+                    <span className="text-xs text-muted-foreground">({FEATURED_PRODUCTS[idx].reviews.toLocaleString('en-IN')})</span>
+                  </div>
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-lg font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+                      {FEATURED_PRODUCTS[idx].price}
+                    </span>
+                    <Link
+                      href="/products"
+                      className="inline-flex items-center gap-1.5 bg-primary/12 hover:bg-primary/22 border border-primary/30 hover:border-primary/60 text-primary px-3.5 py-2 rounded-full text-xs font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    >
+                      <ShoppingCart size={11} />
+                      View Deal
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+
+            {/* ── CARD 5: ASUS ROG Zephyrus — wide (4/6) horizontal ── */}
+            <motion.div
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15, duration: 0.6 }}
+              className="md:col-span-4 group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-secondary/8 via-background to-primary/5 hover:border-white/20 transition-all duration-500 hover:shadow-[0_0_48px_rgba(124,58,237,0.13)] min-h-[260px]"
+            >
+              <div className="absolute bottom-0 left-1/3 w-56 h-56 bg-secondary/10 blur-[70px] rounded-full pointer-events-none" />
+              <div className="flex flex-col sm:flex-row items-center h-full">
+                {/* Image side — left on wide card */}
+                <div className="w-full sm:w-64 md:w-72 h-52 sm:h-full flex items-center justify-center p-6 flex-shrink-0">
+                  <img
+                    src={FEATURED_PRODUCTS[5].image}
+                    alt={FEATURED_PRODUCTS[5].name}
+                    loading="lazy"
+                    className="max-h-44 w-auto object-contain drop-shadow-2xl transition-transform duration-700 group-hover:scale-105"
+                    onError={e => { e.currentTarget.style.display = 'none'; }}
+                  />
+                </div>
+                {/* Text side */}
+                <div className="flex-1 p-7 md:p-8 z-10">
+                  <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold border border-secondary/30 bg-secondary/10 text-secondary mb-4">
+                    {FEATURED_PRODUCTS[5].badge}
+                  </span>
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-2">
+                    {FEATURED_PRODUCTS[5].category}
+                  </p>
+                  <h3 className="text-xl md:text-2xl font-display font-bold text-foreground mb-3">
+                    {FEATURED_PRODUCTS[5].name}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-5 leading-relaxed">
+                    {FEATURED_PRODUCTS[5].blurb}
+                  </p>
+                  <div className="flex items-center gap-5">
+                    <span className="text-2xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary">
+                      {FEATURED_PRODUCTS[5].price}
+                    </span>
+                    <Link
+                      href="/products"
+                      className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+                    >
+                      <ShoppingCart size={14} />
+                      View Deal
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* ── CARD 6: LG UltraGear — tall (2/6) vertical ── */}
+            <motion.div
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.25, duration: 0.55 }}
+              whileHover={{ y: -6 }}
+              className="md:col-span-2 group relative bg-white/5 border border-white/10 rounded-2xl overflow-hidden transition-all duration-500 hover:bg-white/8 hover:border-white/20 hover:shadow-[0_0_28px_rgba(79,140,255,0.11)] flex flex-col"
+            >
+              <div className="absolute top-3 left-3 z-10">
+                <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold border ${FEATURED_PRODUCTS[4].badgeColor}`}>
+                  {FEATURED_PRODUCTS[4].badge}
+                </span>
+              </div>
+              <div className="relative w-full flex-1 min-h-[200px] overflow-hidden flex items-center justify-center bg-gradient-to-br from-white/[0.03] to-transparent">
+                <img
+                  src={FEATURED_PRODUCTS[4].image}
+                  alt={FEATURED_PRODUCTS[4].name}
+                  loading="lazy"
+                  className="w-full h-full object-contain p-5 transition-transform duration-500 group-hover:scale-108"
+                  onError={e => { e.currentTarget.style.display = 'none'; }}
+                />
+              </div>
+              <div className="p-5">
+                <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-1.5">
+                  {FEATURED_PRODUCTS[4].category}
+                </p>
+                <h3 className="text-base font-bold text-foreground mb-2 leading-snug">
+                  {FEATURED_PRODUCTS[4].name}
+                </h3>
+                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                  {FEATURED_PRODUCTS[4].blurb}
+                </p>
+                <div className="flex items-center gap-1.5 mb-4">
+                  <div className="flex text-primary">
+                    {[1,2,3,4,5].map(s => (
+                      <Star key={s} size={11} fill={s <= Math.round(FEATURED_PRODUCTS[4].rating) ? 'currentColor' : 'none'} className={s <= Math.round(FEATURED_PRODUCTS[4].rating) ? '' : 'opacity-25'} />
+                    ))}
+                  </div>
+                  <span className="text-xs font-semibold text-foreground">{FEATURED_PRODUCTS[4].rating}</span>
+                  <span className="text-xs text-muted-foreground">({FEATURED_PRODUCTS[4].reviews.toLocaleString('en-IN')})</span>
+                </div>
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-lg font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+                    {FEATURED_PRODUCTS[4].price}
+                  </span>
+                  <Link
+                    href="/products"
+                    className="inline-flex items-center gap-1.5 bg-primary/12 hover:bg-primary/22 border border-primary/30 hover:border-primary/60 text-primary px-3.5 py-2 rounded-full text-xs font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  >
+                    <ShoppingCart size={11} />
+                    View Deal
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+
+          </div>{/* /bento grid */}
+
+          {/* ── Browse all link ── */}
+          <div className="text-center mt-12">
+            <motion.div whileHover={{ x: 5 }} className="inline-block">
+              <Link
+                href="/products"
+                className="inline-flex items-center gap-2 text-primary font-bold hover:underline text-base"
+              >
+                Browse all products
+                <ArrowRight size={16} />
+              </Link>
+            </motion.div>
+          </div>
+
+        </div>
+      </section>
+
       {/* ═══ TRUST & TESTIMONIALS ══════════════════════════════════════════ */}
-      <section className="py-24 bg-card border-y border-white/5 relative overflow-hidden">
+      <section data-force-dark className="py-24 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 border-y border-white/10 relative overflow-hidden">
         {/* Ambient blob */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-secondary/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none" />
 
         <div className="container mx-auto px-4 md:px-6 relative">
           <div className="flex flex-col md:flex-row items-center justify-between gap-12">
@@ -352,10 +666,10 @@ export default function Home() {
                 <Award size={14} />
                 Independent &amp; Unbiased
               </div>
-              <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">
+              <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6">
                 We buy it, we test it, we break it.
               </h2>
-              <p className="text-muted-foreground text-lg mb-8">
+              <p className="text-slate-300 text-lg mb-8">
                 No sponsored reviews. No fluff. Just brutal honesty about what's
                 worth your money and what belongs in the trash.
               </p>
@@ -404,18 +718,18 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.15 }}
                   whileHover={{ scale: 1.025, y: -3 }}
-                  className="bg-black/40 border border-white/10 p-6 rounded-2xl backdrop-blur-md transition-shadow hover:shadow-[0_0_22px_rgba(79,140,255,0.1)]"
+                  className="bg-muted/30 border border-white/10 p-6 rounded-2xl backdrop-blur-md transition-shadow hover:shadow-[0_0_22px_rgba(79,140,255,0.1)]"
                 >
                   <div className="flex text-primary mb-4">
                     {[1, 2, 3, 4, 5].map((s) => (
                       <Star key={s} size={15} fill="currentColor" />
                     ))}
                   </div>
-                  <p className="text-lg italic mb-6">"{t.text}"</p>
+                  <p className="text-lg italic mb-6 text-foreground">"{t.text}"</p>
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex-shrink-0" />
                     <div>
-                      <div className="font-bold">{t.author}</div>
+                      <div className="font-bold text-foreground">{t.author}</div>
                       <div className="text-xs text-muted-foreground">{t.role}</div>
                     </div>
                   </div>
@@ -453,7 +767,7 @@ export default function Home() {
                 placeholder="Enter your email address"
                 required
                 autoComplete="email"
-                className="flex-1 bg-black/50 border border-white/20 focus:border-primary rounded-full px-6 py-4 text-foreground outline-none transition-colors"
+                className="flex-1 bg-background border border-white/20 focus:border-primary rounded-full px-6 py-4 text-foreground outline-none transition-colors"
               />
               <motion.button
                 type="submit"
