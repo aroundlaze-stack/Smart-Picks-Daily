@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 48" fill="none">
+  <path d="M30 12H22c-2.5 0-4 1.5-4 4s1.5 4 4 4h10c2.5 0 4 1.5 4 4s-1.5 4-4 4H22" stroke="#0C59E9" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="34" cy="10" r="2.5" fill="#7C2AED"/>
+  <circle cx="18" cy="36" r="2.5" fill="#0891B2"/>
+  <text x="48" y="30" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" fill="#0F1729">Smart Picks</text>
+  <text x="184" y="30" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" fill="#0C59E9">Daily</text>
+</svg>
