@@ -13,8 +13,8 @@ export default defineConfig({
     },
     dedupe: ['react', 'react-dom'],
   },
-  server: { port: 5173, host: true },
-  preview: { port: 4173, host: true },
+  server: { port: parseInt(process.env.PORT || '5173'), host: true, allowedHosts: true },
+  preview: { port: parseInt(process.env.PORT || '4173'), host: true },
   build: {
     outDir: 'dist',
     emptyOutDir: true,
