@@ -3,7 +3,6 @@ import { SEO } from '../components/seo';
 import { WormholePortal } from '../components/3d/WormholePortal';
 import { Mail, Clock, ShieldAlert } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { CONTACT_EMAIL } from '../lib/contact';
 
 export default function Contact() {
   const [isMobile, setIsMobile] = useState(false);
@@ -35,8 +34,21 @@ export default function Contact() {
           : 'General Inquiry';
 
     try {
-      const mailtoLink = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Smart Picks Daily - ${subjectLabel}`)}&body=${encodeURIComponent([`Name: ${name}`, `Email: ${email}`, '', message].join('\n'))}`;
-      window.location.href = mailtoLink;
+      const response = await fetch('https://formspree.io/f/mdaqwvzk', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new URLSearchParams({
+          name,
+          email,
+          subject: subjectLabel,
+          message,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Your message could not be sent right now.');
+      }
+
       setFormStatus('sent');
     } catch (error) {
       console.error('Contact submission failed', error);
@@ -109,7 +121,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="text-sm text-muted-foreground">Direct Line</div>
-                    <div className="font-bold text-foreground">{CONTACT_EMAIL}</div>
+                    <div className="font-bold text-foreground">contactpicksdaily@gmail.com</div>
                   </div>
                 </div>
               </div>
