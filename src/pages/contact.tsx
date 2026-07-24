@@ -46,15 +46,23 @@ export default function Contact() {
         }),
       });
 
+      let data: { error?: string } | null = null;
+      try {
+        data = await response.json();
+      } catch {
+        // Ignore non-JSON responses.
+      }
+
       if (!response.ok) {
-        throw new Error('Unable to send message right now.');
+        throw new Error(data?.error || `Unable to send message (${response.status}).`);
       }
 
       setFormStatus('sent');
     } catch (error) {
       console.error('Contact submission failed', error);
       setFormStatus('idle');
-      window.alert('We could not send your message right now. Please email contactpicksdaily@gmail.com directly.');
+      const message = error instanceof Error ? error.message : 'We could not send your message right now.';
+      window.alert(`We could not send your message right now. ${message}`);
     }
   };
 
