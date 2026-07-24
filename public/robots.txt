@@ -30,4 +30,4 @@ Disallow: /
 User-agent: AhrefsBot
 Disallow: /
 
-Sitemap: https://smartpicksdaily.com/sitemap.xml
+Sitemap: https://smart-picks-daily.vercel.app/sitemap.xml
