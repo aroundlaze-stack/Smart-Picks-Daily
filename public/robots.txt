@@ -7,6 +7,9 @@ Disallow: /signup
 Disallow: /forgot-password
 Disallow: /resources/product-comparison
 
+# Allow all public content including the new build detail pages
+Allow: /computers/
+
 # Common search engines
 User-agent: Googlebot
 Allow: /
