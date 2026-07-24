@@ -3,6 +3,7 @@ import { SEO } from '../components/seo';
 import { WormholePortal } from '../components/3d/WormholePortal';
 import { Mail, Clock, ShieldAlert } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { CONTACT_EMAIL } from '../lib/contact';
 
 export default function Contact() {
   const [isMobile, setIsMobile] = useState(false);
@@ -15,10 +16,46 @@ export default function Contact() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus('sending');
-    setTimeout(() => setFormStatus('sent'), 1500);
+
+    const form = e.currentTarget;
+    const name = (form.elements.namedItem('contact-name') as HTMLInputElement | null)?.value?.trim() ?? '';
+    const email = (form.elements.namedItem('contact-email') as HTMLInputElement | null)?.value?.trim() ?? '';
+    const subject = (form.elements.namedItem('contact-subject') as HTMLSelectElement | null)?.value ?? 'general';
+    const message = (form.elements.namedItem('contact-message') as HTMLTextAreaElement | null)?.value?.trim() ?? '';
+
+    const subjectLabel = subject === 'product'
+      ? 'Product Suggestion'
+      : subject === 'advertising'
+        ? 'Advertising / Sponsorship'
+        : subject === 'press'
+          ? 'Press'
+          : 'General Inquiry';
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          subject: subjectLabel,
+          message,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Unable to send message right now.');
+      }
+
+      setFormStatus('sent');
+    } catch (error) {
+      console.error('Contact submission failed', error);
+      setFormStatus('idle');
+      window.alert('We could not send your message right now. Please email contactpicksdaily@gmail.com directly.');
+    }
   };
 
   return (
@@ -84,7 +121,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="text-sm text-muted-foreground">Direct Line</div>
-                    <div className="font-bold text-foreground">contact@smartpicksdaily.com</div>
+                    <div className="font-bold text-foreground">{CONTACT_EMAIL}</div>
                   </div>
                 </div>
               </div>
@@ -117,6 +154,7 @@ export default function Contact() {
                       <label htmlFor="contact-name" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Name</label>
                       <input
                         id="contact-name"
+                        name="contact-name"
                         required
                         type="text"
                         autoComplete="name"
@@ -128,6 +166,7 @@ export default function Contact() {
                       <label htmlFor="contact-email" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Email</label>
                       <input
                         id="contact-email"
+                        name="contact-email"
                         required
                         type="email"
                         autoComplete="email"
@@ -141,6 +180,7 @@ export default function Contact() {
                     <label htmlFor="contact-subject" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Subject</label>
                     <select
                       id="contact-subject"
+                      name="contact-subject"
                       className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground appearance-none cursor-pointer"
                     >
                       <option value="general">General Inquiry</option>
@@ -154,6 +194,7 @@ export default function Contact() {
                     <label htmlFor="contact-message" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Message</label>
                     <textarea
                       id="contact-message"
+                      name="contact-message"
                       required
                       rows={5}
                       className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground resize-none"

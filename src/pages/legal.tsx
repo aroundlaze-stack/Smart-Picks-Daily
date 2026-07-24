@@ -1,4 +1,5 @@
 import { Link } from 'wouter';
+import { CONTACT_EMAIL } from '../lib/contact';
 import { SEO } from '../components/seo';
 
 const LEGAL_SLUGS: Record<string, string> = {
@@ -111,7 +112,7 @@ export default function Legal({ title }: { title: string }) {
             <h2>5. Contact Us</h2>
             <p>
               For more information about our privacy practices, if you have questions, or if you would like to make a complaint, please contact us by e-mail at{' '}
-              <a href="mailto:contact@smartpicksdaily.com">contact@smartpicksdaily.com</a>
+              <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
               {' '}or via our{' '}
               <Link href="/contact" className="text-primary hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
                 contact page
