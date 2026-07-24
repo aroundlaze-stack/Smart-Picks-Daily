@@ -1,0 +1,33 @@
+User-agent: *
+Allow: /
+
+# Do not index auth flows — no value for search users
+Disallow: /login
+Disallow: /signup
+Disallow: /forgot-password
+Disallow: /resources/product-comparison
+
+# Allow all public content including the new build detail pages
+Allow: /computers/
+
+# Common search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 3
+
+# Block known bad scrapers
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+Sitemap: https://smart-picks-daily.vercel.app/sitemap.xml
