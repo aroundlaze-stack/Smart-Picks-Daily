@@ -6,6 +6,8 @@ interface SEOProps {
   type?: string;
   image?: string;
   url?: string;
+  keywords?: string;
+  author?: string;
   /** Optional JSON-LD structured data object(s) */
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   noindex?: boolean;
@@ -49,8 +51,10 @@ export function SEO({
   title,
   description,
   type = 'website',
-  image = '/og-image.jpg',
+  image = '/og-image.png',
   url = '',
+  keywords = 'tech reviews, AI gadgets, laptop buying guides, PC builds, gaming PCs, product recommendations, gadgets India',
+  author = SITE_NAME,
   jsonLd,
   noindex = false,
 }: SEOProps) {
@@ -70,7 +74,10 @@ export function SEO({
     <Helmet>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
+      <meta name="keywords" content={keywords} />
+      <meta name="author" content={author} />
       <meta name="robots" content={noindex ? 'noindex,nofollow' : 'index,follow'} />
+      <meta name="theme-color" content="#050816" />
 
       {/* Open Graph */}
       <meta property="og:site_name" content={SITE_NAME} />
@@ -80,6 +87,7 @@ export function SEO({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
+      <meta property="og:image:type" content="image/png" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={fullTitle} />
