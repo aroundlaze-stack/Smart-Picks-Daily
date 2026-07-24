@@ -28,7 +28,38 @@ export default function ComputerBuildPage() {
       <SEO
         title={`${build.title} Parts List`}
         description={`${build.title} parts list and buying guide. See the CPU, GPU, storage and more for this curated PC build.`}
+        keywords={`${build.title}, PC build guide, ${build.parts[0].category.toLowerCase()} parts, gaming PC parts, desktop buying guide`}
         url={`/computers/${build.slug}`}
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          name: `${build.title} PC build guide`,
+          description: build.summary,
+          url: `https://smartpicksdaily.com/computers/${build.slug}`,
+          inLanguage: 'en-IN',
+          breadcrumb: {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://smartpicksdaily.com/' },
+              { '@type': 'ListItem', position: 2, name: 'PC Builds', item: 'https://smartpicksdaily.com/computers' },
+              { '@type': 'ListItem', position: 3, name: build.title, item: `https://smartpicksdaily.com/computers/${build.slug}` }
+            ]
+          },
+          mainEntity: {
+            '@type': 'ItemList',
+            name: `${build.title} parts list`,
+            itemListElement: build.parts.map((part, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              item: {
+                '@type': 'Product',
+                name: part.name,
+                category: part.category,
+                description: part.description,
+              },
+            })),
+          },
+        }}
       />
 
       <section className="py-16 md:py-24">

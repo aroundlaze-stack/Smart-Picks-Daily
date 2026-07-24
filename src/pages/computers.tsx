@@ -25,6 +25,7 @@ export default function Computers() {
       <SEO
         title="PC Builds & Desktop Guides"
         description="Curated PC part lists for every budget. From budget 1080p rigs to uncompromising 4K battlestations."
+        keywords="PC build guide, gaming PC build, budget gaming PC, 4K PC build, desktop parts list, computer builds India"
         url="/computers"
         jsonLd={{
           '@context': 'https://schema.org',
