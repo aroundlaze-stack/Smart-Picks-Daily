@@ -25,7 +25,7 @@ const GLOBAL_JSONLD = [
     sameAs: [],
     contactPoint: {
       '@type': 'ContactPoint',
-      email: 'contact@smartpicksdaily.com',
+      email: 'contactpicksdaily@gmail.com',
       contactType: 'customer support',
     },
   },
