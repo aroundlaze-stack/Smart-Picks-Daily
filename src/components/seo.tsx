@@ -14,7 +14,7 @@ interface SEOProps {
 }
 
 const SITE_NAME = 'Smart Picks Daily';
-const SITE_URL  = 'https://smartpicksdaily.com';
+const SITE_URL  = 'https://smart-picks-daily.vercel.app';
 
 /** Sitewide JSON-LD: Organization + WebSite with SearchAction */
 const GLOBAL_JSONLD = [
