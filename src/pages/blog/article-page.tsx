@@ -54,20 +54,27 @@ export default function ArticlePage() {
             <Link href="/blog" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6">
               <ArrowLeft size={15} /> Back to Blog
             </Link>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-3xl">{article.icon}</span>
-              <span className="text-xs font-bold px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary">{article.type}</span>
-            </div>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-4">{article.title}</h1>
-            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-              <span className="flex items-center gap-1.5"><Calendar size={15} /> {article.date}</span>
-              <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
-              <span className="flex items-center gap-1.5"><Clock size={15} /> {article.time}</span>
-              <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
-              <div className="flex gap-1.5 flex-wrap">
-                {article.tags.map(tag => (
-                  <span key={tag} className="text-xs px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-muted-foreground">{tag}</span>
-                ))}
+            <div className="grid gap-6 md:grid-cols-[1.15fr_0.85fr] items-center">
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-3xl">{article.icon}</span>
+                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary">{article.type}</span>
+                </div>
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-4">{article.title}</h1>
+                <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                  <span className="flex items-center gap-1.5"><Calendar size={15} /> {article.date}</span>
+                  <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+                  <span className="flex items-center gap-1.5"><Clock size={15} /> {article.time}</span>
+                  <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+                  <div className="flex gap-1.5 flex-wrap">
+                    {article.tags.map(tag => (
+                      <span key={tag} className="text-xs px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-muted-foreground">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-background/40 shadow-2xl shadow-black/20">
+                <img src={article.image} alt={article.title} className="h-full w-full object-cover" />
               </div>
             </div>
           </motion.div>

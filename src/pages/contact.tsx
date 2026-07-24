@@ -57,11 +57,11 @@ export default function Contact() {
             
             {/* Text Side */}
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-primary mb-6 backdrop-blur-md">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-medium text-primary mb-6 backdrop-blur-md">
                 <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                 COMMUNICATIONS OPEN
               </div>
-              <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50">
+              <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 text-foreground">
                 Open a Channel.
               </h1>
               <p className="text-lg text-muted-foreground mb-10 max-w-md">
@@ -69,22 +69,22 @@ export default function Contact() {
               </p>
               
               <div className="space-y-6">
-                <div className="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10 backdrop-blur-md w-max">
+                <div className="flex items-center gap-4 bg-card/80 p-4 rounded-xl border border-border backdrop-blur-md w-max">
                   <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
                     <Clock size={20} />
                   </div>
                   <div>
                     <div className="text-sm text-muted-foreground">Response Time</div>
-                    <div className="font-bold">24-48 Earth Hours</div>
+                    <div className="font-bold text-foreground">24-48 Earth Hours</div>
                   </div>
                 </div>
-                <div className="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10 backdrop-blur-md w-max">
+                <div className="flex items-center gap-4 bg-card/80 p-4 rounded-xl border border-border backdrop-blur-md w-max">
                   <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center text-secondary">
                     <Mail size={20} />
                   </div>
                   <div>
                     <div className="text-sm text-muted-foreground">Direct Line</div>
-                    <div className="font-bold">contact@smartpicksdaily.com</div>
+                    <div className="font-bold text-foreground">contact@smartpicksdaily.com</div>
                   </div>
                 </div>
               </div>

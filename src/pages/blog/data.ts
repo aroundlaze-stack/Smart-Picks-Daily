@@ -5,10 +5,44 @@ export interface Article {
   time: string;
   date: string;
   excerpt: string;
+  image?: string;
   tags: string[];
   heroColor: string;
   icon: string;
 }
+
+const BLOG_COVER_IMAGES: Record<string, string> = {
+  'best-gaming-laptops-2026': 'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80',
+  'mechanical-vs-optical-switches': 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&w=1200&q=80',
+  'best-gaming-monitors-2026': 'https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?auto=format&fit=crop&w=1200&q=80',
+  'top-wireless-headphones-2026': 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80',
+  'best-budget-gaming-mice': 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
+  'ssd-vs-hdd-guide': 'https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'best-student-laptops-2026': 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80',
+  'laptop-buying-guide-2026': 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80',
+  'best-mechanical-keyboards-2026': 'https://images.pexels.com/photos/2115256/pexels-photo-2115256.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'gaming-mouse-buying-guide': 'https://images.pexels.com/photos/5198285/pexels-photo-5198285.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'best-nvme-ssds-2026': 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=1200&q=80',
+  'monitor-buying-guide-2026': 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80',
+  'best-wifi-routers-2026': 'https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=1200&q=80',
+  'budget-smartphones-2026': 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&q=80',
+  'best-tablets-2026': 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=1200&q=80',
+  'best-wireless-earbuds-2026': 'https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=1200&q=80',
+  'noise-cancelling-headphones-guide': 'https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'best-power-banks-2026': 'https://images.pexels.com/photos/414860/pexels-photo-414860.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'best-usb-c-hubs-2026': 'https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1200&q=80',
+  'laptop-cooling-pads-guide': 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80',
+  'graphics-cards-buying-guide': 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=1200&q=80',
+  'best-gaming-chairs-2026': 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80',
+  'mechanical-switch-buying-guide': 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1200&q=80',
+  'laptop-accessories-guide': 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80',
+  'study-setup-guide': 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80',
+  'programming-laptop-guide': 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80',
+  'streaming-equipment-guide': 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80',
+  'best-webcams-2026': 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80',
+  'best-usb-microphones-2026': 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80',
+  'productive-desk-setup-guide': 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80',
+};
 
 export const ARTICLES: Article[] = [
   { slug: 'best-gaming-laptops-2026', title: 'Best Gaming Laptops of 2026', type: 'Buying Guide', time: '8 min', date: 'Jul 15, 2026', excerpt: 'Compare the latest high-performance machines with RTX graphics and OLED displays — from budget picks to 4K monsters.', tags: ['gaming', 'laptops', 'RTX'], heroColor: 'from-red-500/30', icon: '🎮' },
@@ -41,4 +75,7 @@ export const ARTICLES: Article[] = [
   { slug: 'best-webcams-2026', title: 'Best Webcams for Remote Work & Streaming', type: 'Buying Guide', time: '6 min', date: 'Apr 05, 2026', excerpt: '1080p vs 4K, autofocus, low-light performance, and built-in mics — find the right webcam for your setup.', tags: ['webcams', 'streaming', 'remote work'], heroColor: 'from-cyan-500/30', icon: '📷' },
   { slug: 'best-usb-microphones-2026', title: 'Best USB Microphones for Podcasting, Streaming & Calls', type: 'Buying Guide', time: '6 min', date: 'Apr 01, 2026', excerpt: 'Condenser vs dynamic, sample rates, polar patterns — and our top picks from ₹3,000 to ₹20,000.', tags: ['microphones', 'audio', 'streaming'], heroColor: 'from-rose-500/30', icon: '🎙️' },
   { slug: 'productive-desk-setup-guide', title: 'How to Build a Productive Desk Setup That Lasts', type: 'Setup Guide', time: '8 min', date: 'Mar 28, 2026', excerpt: 'Ergonomics, cable management, monitor placement, lighting, and the tools that make working at your desk a joy.', tags: ['setup', 'productivity', 'ergonomics'], heroColor: 'from-amber-500/30', icon: '🖥️' },
-];
+].map(article => ({
+  ...article,
+  image: article.image ?? BLOG_COVER_IMAGES[article.slug] ?? 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80',
+}));

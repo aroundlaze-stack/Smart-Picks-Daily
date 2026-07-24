@@ -138,9 +138,10 @@ export default function Blog() {
                 >
                   <Link href={`/blog/${article.slug}`} onClick={() => trackArticleOpened(i + 1, article.title, article.type)}
                     className="block relative h-56 rounded-2xl overflow-hidden mb-6 bg-card border border-white/10 group-hover:border-primary/50 transition-all duration-300">
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/20 via-background to-background opacity-50 group-hover:opacity-80 transition-opacity" />
+                    <img src={article.image} alt={article.title} className="absolute inset-0 h-full w-full object-cover" />
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-background/20 via-background/40 to-background/90 opacity-80 group-hover:opacity-100 transition-opacity" />
                     <div className="absolute inset-0 flex items-center justify-center p-6 text-center">
-                      <span className="font-display font-bold text-xl text-white/50 group-hover:text-white transition-colors drop-shadow-md">{article.title}</span>
+                      <span className="font-display font-bold text-xl text-white drop-shadow-md">{article.title}</span>
                     </div>
                     <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-xs font-bold text-primary">{article.type}</div>
                   </Link>

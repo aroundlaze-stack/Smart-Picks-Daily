@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { SEO } from '../components/seo';
 import { AIIntelligenceCore } from '../components/3d/AIIntelligenceCore';
+import { ALL_PRODUCTS } from '../data/products.shared';
 
 // ── Trust badges ────────────────────────────────────────────────────────────
 
@@ -109,6 +110,25 @@ const FEATURED_PRODUCTS = [
     blurb: 'Compact 14″ powerhouse — RTX 4060 Ti meets the AniMe Matrix lid.',
   },
 ] as const;
+
+const getImage = (name: string, fallback?: string) => {
+  const normalize = (s: string) => s.replace(/["']/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
+  const target = normalize(name);
+  const p = ALL_PRODUCTS.find((x) => {
+    const n = normalize(x.name);
+    return n === target || n.includes(target) || target.includes(n);
+  });
+  return (p && p.image) ? p.image : fallback ?? '/placeholder.png';
+};
+
+const getSharedProduct = (name: string) => {
+  const normalize = (s: string) => s.replace(/["']/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
+  const target = normalize(name);
+  return ALL_PRODUCTS.find((x) => {
+    const n = normalize(x.name);
+    return n === target || n.includes(target) || target.includes(n);
+  });
+};
 
 // ── Category cards ───────────────────────────────────────────────────────────
 
@@ -439,6 +459,35 @@ export default function Home() {
                     <span className="text-sm font-semibold text-foreground">{FEATURED_PRODUCTS[0].rating}</span>
                     <span className="text-sm text-muted-foreground">({FEATURED_PRODUCTS[0].reviews.toLocaleString('en-IN')} reviews)</span>
                   </div>
+                  {/* pros / cons from shared dataset */}
+                  {(() => {
+                    const shared = getSharedProduct(FEATURED_PRODUCTS[0].name);
+                    if (!shared) return null;
+                    return (
+                      <div className="mb-6 max-w-md">
+                        {shared.pros?.length ? (
+                          <ul className="flex flex-wrap gap-3 mb-2">
+                            {shared.pros.slice(0,3).map((p, i) => (
+                              <li key={i} className="flex items-center gap-2 text-sm text-foreground">
+                                <CheckCircle2 size={14} className="text-green-400 flex-shrink-0" />
+                                <span className="leading-snug">{p}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                        {shared.cons?.length ? (
+                          <ul className="flex flex-wrap gap-3">
+                            {shared.cons.slice(0,3).map((c, i) => (
+                              <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
+                                <span className="text-red-400">●</span>
+                                <span className="leading-snug">{c}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </div>
+                    );
+                  })()}
                   <div className="flex items-center gap-5">
                     <span className="text-3xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
                       {FEATURED_PRODUCTS[0].price}
@@ -455,7 +504,7 @@ export default function Home() {
                 {/* Image side */}
                 <div className="w-full md:w-80 lg:w-96 h-56 md:h-full flex items-center justify-center p-6 md:p-8 flex-shrink-0">
                   <img
-                    src={FEATURED_PRODUCTS[0].image}
+                    src={getImage(FEATURED_PRODUCTS[0].name, FEATURED_PRODUCTS[0].image)}
                     alt={FEATURED_PRODUCTS[0].name}
                     loading="lazy"
                     className="max-h-52 md:max-h-64 w-auto object-contain drop-shadow-2xl transition-transform duration-700 group-hover:scale-105"
@@ -485,7 +534,7 @@ export default function Home() {
                 {/* Image */}
                 <div className="relative w-full aspect-[4/3] overflow-hidden flex items-center justify-center bg-gradient-to-br from-white/[0.03] to-transparent">
                   <img
-                    src={FEATURED_PRODUCTS[idx].image}
+                    src={getImage(FEATURED_PRODUCTS[idx].name, FEATURED_PRODUCTS[idx].image)}
                     alt={FEATURED_PRODUCTS[idx].name}
                     loading="lazy"
                     className="w-full h-full object-contain p-5 transition-transform duration-500 group-hover:scale-108"
@@ -503,6 +552,34 @@ export default function Home() {
                   <p className="text-sm text-muted-foreground mb-4 leading-relaxed flex-1">
                     {FEATURED_PRODUCTS[idx].blurb}
                   </p>
+                  {(() => {
+                    const shared = getSharedProduct(FEATURED_PRODUCTS[idx].name);
+                    if (!shared) return null;
+                    return (
+                      <div className="mb-3">
+                        {shared.pros?.length ? (
+                          <ul className="flex flex-wrap gap-3 mb-2">
+                            {shared.pros.slice(0,2).map((p, i) => (
+                              <li key={i} className="flex items-center gap-2 text-sm text-foreground">
+                                <CheckCircle2 size={12} className="text-green-400 flex-shrink-0" />
+                                <span>{p}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                        {shared.cons?.length ? (
+                          <ul className="flex flex-wrap gap-3">
+                            {shared.cons.slice(0,2).map((c, i) => (
+                              <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
+                                <span className="text-red-400">●</span>
+                                <span>{c}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </div>
+                    );
+                  })()}
                   <div className="flex items-center gap-1.5 mb-4">
                     <div className="flex text-primary">
                       {[1,2,3,4,5].map(s => (
@@ -541,7 +618,7 @@ export default function Home() {
                 {/* Image side — left on wide card */}
                 <div className="w-full sm:w-64 md:w-72 h-52 sm:h-full flex items-center justify-center p-6 flex-shrink-0">
                   <img
-                    src={FEATURED_PRODUCTS[5].image}
+                    src={getImage(FEATURED_PRODUCTS[5].name, FEATURED_PRODUCTS[5].image)}
                     alt={FEATURED_PRODUCTS[5].name}
                     loading="lazy"
                     className="max-h-44 w-auto object-contain drop-shadow-2xl transition-transform duration-700 group-hover:scale-105"
@@ -562,6 +639,34 @@ export default function Home() {
                   <p className="text-sm text-muted-foreground mb-5 leading-relaxed">
                     {FEATURED_PRODUCTS[5].blurb}
                   </p>
+                  {(() => {
+                    const shared = getSharedProduct(FEATURED_PRODUCTS[5].name);
+                    if (!shared) return null;
+                    return (
+                      <div className="mb-4">
+                        {shared.pros?.length ? (
+                          <ul className="flex flex-wrap gap-3 mb-2">
+                            {shared.pros.slice(0,3).map((p, i) => (
+                              <li key={i} className="flex items-center gap-2 text-sm text-foreground">
+                                <CheckCircle2 size={12} className="text-green-400 flex-shrink-0" />
+                                <span>{p}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                        {shared.cons?.length ? (
+                          <ul className="flex flex-wrap gap-3">
+                            {shared.cons.slice(0,3).map((c, i) => (
+                              <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
+                                <span className="text-red-400">●</span>
+                                <span>{c}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </div>
+                    );
+                  })()}
                   <div className="flex items-center gap-5">
                     <span className="text-2xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary">
                       {FEATURED_PRODUCTS[5].price}
@@ -594,7 +699,7 @@ export default function Home() {
               </div>
               <div className="relative w-full flex-1 min-h-[200px] overflow-hidden flex items-center justify-center bg-gradient-to-br from-white/[0.03] to-transparent">
                 <img
-                  src={FEATURED_PRODUCTS[4].image}
+                  src={getImage(FEATURED_PRODUCTS[4].name, FEATURED_PRODUCTS[4].image)}
                   alt={FEATURED_PRODUCTS[4].name}
                   loading="lazy"
                   className="w-full h-full object-contain p-5 transition-transform duration-500 group-hover:scale-108"
@@ -611,6 +716,34 @@ export default function Home() {
                 <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
                   {FEATURED_PRODUCTS[4].blurb}
                 </p>
+                {(() => {
+                  const shared = getSharedProduct(FEATURED_PRODUCTS[4].name);
+                  if (!shared) return null;
+                  return (
+                    <div className="mb-3">
+                      {shared.pros?.length ? (
+                        <ul className="flex flex-wrap gap-3 mb-2">
+                          {shared.pros.slice(0,2).map((p, i) => (
+                            <li key={i} className="flex items-center gap-2 text-sm text-foreground">
+                              <CheckCircle2 size={12} className="text-green-400 flex-shrink-0" />
+                              <span>{p}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                      {shared.cons?.length ? (
+                        <ul className="flex flex-wrap gap-3">
+                          {shared.cons.slice(0,2).map((c, i) => (
+                            <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
+                              <span className="text-red-400">●</span>
+                              <span>{c}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                    </div>
+                  );
+                })()}
                 <div className="flex items-center gap-1.5 mb-4">
                   <div className="flex text-primary">
                     {[1,2,3,4,5].map(s => (
@@ -718,14 +851,14 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.15 }}
                   whileHover={{ scale: 1.025, y: -3 }}
-                  className="bg-muted/30 border border-white/10 p-6 rounded-2xl backdrop-blur-md transition-shadow hover:shadow-[0_0_22px_rgba(79,140,255,0.1)]"
+                  className="bg-card/80 border border-border p-6 rounded-2xl backdrop-blur-md transition-shadow hover:shadow-[0_0_22px_rgba(79,140,255,0.1)]"
                 >
                   <div className="flex text-primary mb-4">
                     {[1, 2, 3, 4, 5].map((s) => (
                       <Star key={s} size={15} fill="currentColor" />
                     ))}
                   </div>
-                  <p className="text-lg italic mb-6 text-foreground">"{t.text}"</p>
+                  <p className="text-lg italic mb-6 text-card-foreground/90">"{t.text}"</p>
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex-shrink-0" />
                     <div>
