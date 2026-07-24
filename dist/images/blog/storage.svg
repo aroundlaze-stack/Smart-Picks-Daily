@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Storage device illustration</title>
+  <desc id="desc">Stylized SSD and storage device graphic for blog article cover images.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#fb7185"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#020617" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <g filter="url(#shadow)">
+    <rect x="280" y="220" width="640" height="360" rx="38" fill="#0f172a" stroke="url(#accent)" stroke-width="6"/>
+    <rect x="340" y="280" width="520" height="240" rx="22" fill="#111827"/>
+    <rect x="392" y="332" width="416" height="24" rx="12" fill="#f8fafc" opacity="0.2"/>
+    <rect x="392" y="376" width="316" height="24" rx="12" fill="#f8fafc" opacity="0.2"/>
+    <rect x="392" y="420" width="252" height="24" rx="12" fill="#f8fafc" opacity="0.2"/>
+    <rect x="392" y="464" width="420" height="24" rx="12" fill="#f8fafc" opacity="0.2"/>
+    <circle cx="780" cy="560" r="18" fill="#fbbf24"/>
+  </g>
+</svg>

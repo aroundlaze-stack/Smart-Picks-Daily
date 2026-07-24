@@ -1,0 +1,1 @@
+import{r as t}from"./ui-vendor-CQVooiRJ.js";class o extends t.Component{constructor(r){super(r),this.state={hasError:!1}}static getDerivedStateFromError(){return{hasError:!0}}componentDidCatch(){}render(){return this.state.hasError?this.props.fallback:this.props.children}}export{o as W};
