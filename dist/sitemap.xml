@@ -1,34 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Core pages -->
-  <url><loc>https://smartpicksdaily.com/</loc><lastmod>2026-07-23</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
-  <url><loc>https://smartpicksdaily.com/products</loc><lastmod>2026-07-23</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://smartpicksdaily.com/ai-tech-finder</loc><lastmod>2026-07-23</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://smartpicksdaily.com/laptop-finder</loc><lastmod>2026-07-23</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://smartpicksdaily.com/compare</loc><lastmod>2026-07-23</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://smartpicksdaily.com/computers</loc><lastmod>2026-07-23</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/</loc><lastmod>2026-07-23</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/products</loc><lastmod>2026-07-23</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/ai-tech-finder</loc><lastmod>2026-07-23</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/laptop-finder</loc><lastmod>2026-07-23</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/compare</loc><lastmod>2026-07-23</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/computers</loc><lastmod>2026-07-24</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/computers/1080p-budget-king</loc><lastmod>2026-07-24</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/computers/1440p-sweet-spot</loc><lastmod>2026-07-24</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/computers/4k-no-compromises</loc><lastmod>2026-07-24</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
   <!-- Content — Blog -->
-  <url><loc>https://smartpicksdaily.com/blog</loc><lastmod>2026-07-23</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/blog</loc><lastmod>2026-07-23</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
   <!-- Reviews index -->
-  <url><loc>https://smartpicksdaily.com/reviews</loc><lastmod>2026-07-23</lastmod><changefreq>daily</changefreq><priority>0.85</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/reviews</loc><lastmod>2026-07-23</lastmod><changefreq>daily</changefreq><priority>0.85</priority></url>
   <!-- Individual review pages -->
-  <url><loc>https://smartpicksdaily.com/reviews/msi-katana-17-review</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://smartpicksdaily.com/reviews/best-gaming-monitors-2026</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://smartpicksdaily.com/reviews/best-wireless-headphones</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://smartpicksdaily.com/reviews/best-wireless-mouse</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://smartpicksdaily.com/reviews/best-mechanical-keyboards</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://smartpicksdaily.com/reviews/best-external-ssds</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://smartpicksdaily.com/reviews/best-gaming-laptops</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/reviews/msi-katana-17-review</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/reviews/best-gaming-monitors-2026</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/reviews/best-wireless-headphones</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/reviews/best-wireless-mouse</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/reviews/best-mechanical-keyboards</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/reviews/best-external-ssds</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/reviews/best-gaming-laptops</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
   <!-- Tools / Resources -->
-  <url><loc>https://smartpicksdaily.com/resources</loc><lastmod>2026-07-23</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://smartpicksdaily.com/resources/cgpa-calculator</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://smartpicksdaily.com/resources/emi-calculator</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://smartpicksdaily.com/resources/study-planner</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://smartpicksdaily.com/resources/goal-planner</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/resources</loc><lastmod>2026-07-23</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/resources/cgpa-calculator</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/resources/emi-calculator</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/resources/study-planner</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/resources/goal-planner</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <!-- Static / company -->
-  <url><loc>https://smartpicksdaily.com/about</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://smartpicksdaily.com/contact</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://smartpicksdaily.com/privacy</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://smartpicksdaily.com/terms</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://smartpicksdaily.com/disclaimer</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/about</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/contact</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/privacy</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/terms</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://smart-picks-daily.vercel.app/disclaimer</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
 </urlset>
