@@ -21,6 +21,7 @@ const Reviews           = lazy(() => import('./pages/reviews'));
 const ReviewArticle     = lazy(() => import('./pages/reviews/review-page'));
 const Resources         = lazy(() => import('./pages/resources'));
 const Computers         = lazy(() => import('./pages/computers'));
+const ComputerBuildPage = lazy(() => import('./pages/computer-build'));
 const About             = lazy(() => import('./pages/about'));
 const Contact           = lazy(() => import('./pages/contact'));
 const Legal             = lazy(() => import('./pages/legal'));
@@ -103,6 +104,7 @@ function AppWithConsent() {
               <Route path="/resources" component={Resources} />
 
               <Route path="/computers" component={Computers} />
+              <Route path="/computers/:slug" component={ComputerBuildPage} />
               <Route path="/about" component={About} />
               <Route path="/contact" component={Contact} />
               <Route path="/privacy">
