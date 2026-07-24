@@ -3,6 +3,7 @@ import { SEO } from '../components/seo';
 import { WormholePortal } from '../components/3d/WormholePortal';
 import { Mail, Clock, ShieldAlert } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { CONTACT_EMAIL, CONTACT_FORM_ENDPOINT } from '../lib/contact';
 
 export default function Contact() {
   const [isMobile, setIsMobile] = useState(false);
@@ -34,7 +35,7 @@ export default function Contact() {
           : 'General Inquiry';
 
     try {
-      const response = await fetch('https://formspree.io/f/mdaqwvzk', {
+      const response = await fetch(CONTACT_FORM_ENDPOINT, {
         method: 'POST',
         headers: { 'Accept': 'application/json' },
         body: new URLSearchParams({
@@ -68,13 +69,13 @@ export default function Contact() {
           '@context': 'https://schema.org',
           '@type': 'ContactPage',
           name: 'Contact Smart Picks Daily',
-          url: 'https://smartpicksdaily.com/contact',
+          url: 'https://smart-picks-daily.vercel.app/contact',
           description: 'Open a channel with the Smart Picks Daily editorial team. Product suggestions, partnerships, and inquiries.',
           breadcrumb: {
             '@type': 'BreadcrumbList',
             itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://smartpicksdaily.com/' },
-              { '@type': 'ListItem', position: 2, name: 'Contact', item: 'https://smartpicksdaily.com/contact' }
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://smart-picks-daily.vercel.app/' },
+              { '@type': 'ListItem', position: 2, name: 'Contact', item: 'https://smart-picks-daily.vercel.app/contact' }
             ]
           }
         }}
@@ -121,7 +122,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="text-sm text-muted-foreground">Direct Line</div>
-                    <div className="font-bold text-foreground">contactpicksdaily@gmail.com</div>
+                    <div className="font-bold text-foreground">{CONTACT_EMAIL}</div>
                   </div>
                 </div>
               </div>
