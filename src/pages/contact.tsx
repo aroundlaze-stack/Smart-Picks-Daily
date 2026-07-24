@@ -35,25 +35,8 @@ export default function Contact() {
           : 'General Inquiry';
 
     try {
-      const formData = new FormData();
-      formData.append('access_key', 'f7f83f0c-588a-4d12-a6bf-e68abcad82ab');
-      formData.append('name', name);
-      formData.append('email', email);
-      formData.append('subject', subjectLabel);
-      formData.append('message', message);
-      formData.append('from_name', 'Smart Picks Daily Contact Form');
-
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData,
-      });
-
-      const data = await response.json();
-
-      if (!response.ok || data.success !== true) {
-        throw new Error(data.message || 'Unable to send message right now.');
-      }
-
+      const mailtoLink = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Smart Picks Daily - ${subjectLabel}`)}&body=${encodeURIComponent([`Name: ${name}`, `Email: ${email}`, '', message].join('\n'))}`;
+      window.location.href = mailtoLink;
       setFormStatus('sent');
     } catch (error) {
       console.error('Contact submission failed', error);
