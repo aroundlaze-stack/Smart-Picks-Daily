@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'wouter';
 import { SEO } from '../components/seo';
 import { ExplodedComputer } from '../components/3d/ExplodedComputer';
 import { Cpu, Zap, HardDrive, Monitor } from 'lucide-react';
@@ -7,49 +8,7 @@ import {
   trackBuildPartsListClicked,
   trackViewBuildGuidesClicked,
 } from '../lib/tracking';
-
-const BUILDS = [
-  {
-    title: "1080p Budget King",
-    price: "₹65,000 – ₹85,000",
-    desc: "Max out graphics at 1080p without breaking the bank. Perfect for esports and modern AAA titles on high settings.",
-    specs: [
-      { name: "CPU", val: "AMD Ryzen 5 7600" },
-      { name: "GPU", val: "Radeon RX 7600" },
-      { name: "RAM", val: "16GB DDR5-5600" },
-      { name: "Storage", val: "1TB NVMe Gen4" }
-    ],
-    color: "from-green-500/20 to-transparent",
-    borderColor: "border-green-500/30"
-  },
-  {
-    title: "1440p Sweet Spot",
-    price: "₹1,05,000 – ₹1,35,000",
-    desc: "The best price-to-performance ratio in gaming right now. Dominates 1440p monitors with high refresh rates.",
-    specs: [
-      { name: "CPU", val: "Intel Core i5-13600K" },
-      { name: "GPU", val: "NVIDIA RTX 4070" },
-      { name: "RAM", val: "32GB DDR5-6000" },
-      { name: "Storage", val: "2TB NVMe Gen4" }
-    ],
-    color: "from-primary/20 to-transparent",
-    borderColor: "border-primary/30",
-    popular: true
-  },
-  {
-    title: "4K No Compromises",
-    price: "₹2,00,000+",
-    desc: "When budget isn't a concern. Play anything at 4K native or crush complex video editing and 3D rendering workflows.",
-    specs: [
-      { name: "CPU", val: "AMD Ryzen 7 7800X3D" },
-      { name: "GPU", val: "NVIDIA RTX 4080 Super" },
-      { name: "RAM", val: "32GB DDR5-6000 CL30" },
-      { name: "Storage", val: "4TB NVMe Gen4" }
-    ],
-    color: "from-secondary/20 to-transparent",
-    borderColor: "border-secondary/30"
-  }
-];
+import { COMPUTER_BUILDS } from '../data/computer-builds';
 
 export default function Computers() {
   const [isMobile, setIsMobile] = useState(false);
@@ -120,7 +79,7 @@ export default function Computers() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {BUILDS.map((build, i) => (
+            {COMPUTER_BUILDS.map((build, i) => (
               <div 
                 key={i} 
                 className={`relative flex flex-col bg-card border rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] ${build.borderColor}`}
@@ -149,13 +108,15 @@ export default function Computers() {
                     ))}
                   </div>
                   
-                  <button
-                    className="w-full bg-white/5 hover:bg-white/10 border border-white/10 py-4 rounded-xl font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                    aria-label={`View parts list for ${build.title}`}
-                    onClick={() => trackBuildPartsListClicked(build.title)}
-                  >
-                    View Parts List
-                  </button>
+                  <Link href={`/computers/${build.slug}`}>
+                    <button
+                      className="w-full bg-white/5 hover:bg-white/10 border border-white/10 py-4 rounded-xl font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                      aria-label={`View parts list for ${build.title}`}
+                      onClick={() => trackBuildPartsListClicked(build.title)}
+                    >
+                      View Parts List
+                    </button>
+                  </Link>
                 </div>
               </div>
             ))}
